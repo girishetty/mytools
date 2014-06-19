@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Android Webserver For Configuring BG2CD</string>
+    <string name="app_name">Android Webserver</string>
+    <string name="log">Log</string>
+</resources>
