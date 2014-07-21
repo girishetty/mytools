@@ -5,6 +5,10 @@
 
 const WCHAR* const gADBProcess = L"adb.exe";
 const wstring gADBDevices(L"devices");
+//Command to set the reset tracker register
+const wstring gResetTracker(L"busybox devmem 0xF7FE1404 8 0x3");
+//Command to trigger warm reboot
+const wstring gWarmReboot(L"busybox devmem 0xF7EA0600 8 0x1");
 const WCHAR* const gADBTerminate = L"kill-server";
 const CHAR* const gADBDeviceListFile = "devicelist.txt";
 const CHAR* const gADBLookup = "List of devices attached";
@@ -41,7 +45,8 @@ INT AdbProcessHandler::HandleReadError(INT readError)
 	return retVal;
 }
 
-AdbDevicesProcessHandler::AdbDevicesProcessHandler(const wstring& processName, const CHAR* outputFileName) : AdbProcessHandler(processName, gADBDevices, outputFileName)
+AdbDevicesProcessHandler::AdbDevicesProcessHandler(const wstring& processName, const CHAR* outputFileName) : 
+    AdbProcessHandler(processName, gADBDevices, outputFileName)
 {
 
 }
@@ -143,4 +148,109 @@ INT AdbPushProcessHandler::ReadFromChildProcess()
 	}
 	pushResult.close();
 	return retVal;
+}
+
+
+AdbPullProcessHandler::AdbPullProcessHandler(const wstring& processName, const string& deviceName, const string& srcFile,
+	const string& dstLocation, const CHAR* outputFileName) : AdbProcessHandler(processName, L"", outputFileName)
+{
+	//Construct the push command
+	string pushCommand("-s ");
+	pushCommand += deviceName;
+	pushCommand += " pull ";
+	pushCommand += srcFile;
+	pushCommand += " ";
+	pushCommand += dstLocation;
+	WCHAR tempArg[512] = L"";
+	mbstowcs(tempArg, pushCommand.c_str(), 512);
+	wstring arguments(tempArg);
+
+	SetAgruments(arguments);
+}
+
+AdbPullProcessHandler::~AdbPullProcessHandler()
+{
+}
+
+// Read output from the child process's pipe for STDOUT
+// and write it to the Output File
+// In this Process (adb push), we know that we are going to read
+// the adb push result
+INT AdbPullProcessHandler::ReadFromChildProcess()
+{
+	INT retVal = READ_FROM_CHILD_SUCCESS;
+	DWORD dwRead = 0;
+	CHAR chBuf[BUFSIZE] = "";
+	BOOL bSuccess = FALSE;
+	ofstream pushResult(iOutputFileName);
+
+	if (pushResult.is_open()) {
+		while (TRUE) {
+			bSuccess = ReadFile(iHandleChildStdOutRd, chBuf, BUFSIZE, &dwRead, NULL);
+			if (!bSuccess || dwRead <= 0) {
+				//adb process terminated, so we can break the loop
+				break;
+			}
+			chBuf[dwRead] = '\0';
+			//adb push is done, copy it to the file and then end the loop
+			pushResult << chBuf;
+			break;
+		}
+	}
+	pushResult.close();
+	return retVal;
+}
+
+AdbShellProcessHandler::AdbShellProcessHandler(const wstring& processName, const string& deviceName, 
+	const wstring& command, const CHAR* outputFileName) : AdbProcessHandler(processName, L"", outputFileName)
+{
+	//Construct the shell command
+	string shellCommand("-s ");
+	shellCommand += deviceName;
+	shellCommand += " shell ";
+	WCHAR tempArg[512] = L"";
+	mbstowcs(tempArg, shellCommand.c_str(), 512);
+	wstring arguments(tempArg);
+	arguments += command;
+
+	SetAgruments(arguments);
+}
+
+AdbShellProcessHandler::~AdbShellProcessHandler()
+{
+}
+
+// Read output from the child process's pipe for STDOUT
+// and write it to the Output File
+// In this Process (adb push), we know that we are going to read
+// the adb push result
+INT AdbShellProcessHandler::ReadFromChildProcess()
+{
+	INT retVal = READ_FROM_CHILD_SUCCESS;
+
+	return retVal;
+}
+
+AdbResetTrackerProcessHandler::AdbResetTrackerProcessHandler(const wstring& processName, const string& deviceName, 
+	const CHAR* outputFileName):
+	AdbShellProcessHandler(processName, deviceName, gResetTracker, outputFileName)
+{
+
+}
+
+AdbResetTrackerProcessHandler::~AdbResetTrackerProcessHandler()
+{
+
+}
+
+AdbWarmBootProcessHandler::AdbWarmBootProcessHandler(const wstring& processName, const string& deviceName,
+	const CHAR* outputFileName) :
+	AdbShellProcessHandler(processName, deviceName, gWarmReboot, outputFileName)
+{
+
+}
+
+AdbWarmBootProcessHandler::~AdbWarmBootProcessHandler()
+{
+
 }

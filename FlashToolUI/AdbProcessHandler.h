@@ -37,5 +37,36 @@ private:
 	virtual INT ReadFromChildProcess();
 };
 
+class AdbPullProcessHandler : public AdbProcessHandler {
+public:
+	AdbPullProcessHandler(const wstring& processName, const string& deviceName, const string& srcFile, const string& dstLocation, const CHAR* outputFileName);
+	virtual ~AdbPullProcessHandler();
+
+private:
+	virtual INT ReadFromChildProcess();
+};
+
+class AdbShellProcessHandler : public AdbProcessHandler {
+public:
+	AdbShellProcessHandler(const wstring& processName, const string& deviceName, const wstring& command, const CHAR* outputFileName);
+	virtual ~AdbShellProcessHandler();
+
+private:
+	virtual INT ReadFromChildProcess();
+};
+
+class AdbResetTrackerProcessHandler : public AdbShellProcessHandler {
+public:
+	AdbResetTrackerProcessHandler(const wstring& processName, const string& deviceName, const CHAR* outputFileName);
+	virtual ~AdbResetTrackerProcessHandler();
+
+};
+
+class AdbWarmBootProcessHandler : public AdbShellProcessHandler {
+public:
+	AdbWarmBootProcessHandler(const wstring& processName, const string& deviceName, const CHAR* outputFileName);
+	virtual ~AdbWarmBootProcessHandler();
+
+};
 
 #endif //__ADB_PROCESS_HANDLER_H__

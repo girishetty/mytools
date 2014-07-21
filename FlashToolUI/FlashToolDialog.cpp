@@ -54,6 +54,12 @@ INT_PTR CALLBACK About(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam);
 const CHAR* const gADBBatch = "launchadb.bat";
 #endif
 
+const char* gAvailFreq = "/sys/devices/system/cpu/cpu0/cpufreq/scaling_available_frequencies";
+const char* gCurFreq = "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq";
+const char* gAvailGov = "/sys/devices/system/cpu/cpu0/cpufreq/scaling_available_governors";
+const char* gCurGov = "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor";
+const char* gLatency = "/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_transition_latency";
+
 const INT ADB_RETRY_COUNT = 6;
 const INT ADB_RETRY_WAIT_TIME = 3000;  //in milli seconds
 //const INT ADB_RETRY_WAIT_TIME = 1000;  //in milli seconds
@@ -170,8 +176,11 @@ INT CFlashToolDialog::HandleMessages(HWND hDlg, UINT message, WPARAM wParam, LPA
 		ProgramFCT1();
 		break;
 	case ID_IMAGE_FCT2:
+		//ProgramFCT2();
+		ProgramUsbBootReset();
 		break;
 	case ID_IMAGE_FCT3:
+		MonitorCPUDetails();
 		break;
 	case ID_IMAGE_FCT4:
 		break;
@@ -564,10 +573,18 @@ INT CFlashToolDialog::UpdateDeviceList()
 			 * Example: 532b97ec985c307a 3-2	device
              */
 			//Look for the 2nd occurance of SPACE/TAB after <DeviceID>, truncate the entry there and parse it
+#if 0
 			found = entry.find(' ', DEVICE_ID_MAX_LENGTH + 1);
+#else
+			found = entry.find(" ");
+#endif
 			if (found == -1) {
 				//If SPACE is not found look to TAB
+#if 0
 				found = entry.find('\t', DEVICE_ID_MAX_LENGTH + 1);
+#else
+				found = entry.find('\t');
+#endif
 			}
 
 			//Don't bother if its an offline device
@@ -601,6 +618,7 @@ void CFlashToolDialog::ResetDeviceList()
 
 INT CFlashToolDialog::SetUSBDeviceInfo(CHAR* deviceInfo)
 {
+#if 0
 	CHAR tempBuf[100];
 	CHAR busPortInfo[20];
 	CHAR* deviceID = NULL;
@@ -653,7 +671,17 @@ INT CFlashToolDialog::SetUSBDeviceInfo(CHAR* deviceInfo)
 	else {
 		subPort = -1;
 	}
-
+#else
+	INT subPort = 0;
+	iUsbPortInfo[subPort].iDeviceInfo.iSubPortNum = 1;
+	iUsbPortInfo[subPort].iDeviceInfo.iPortNum = 1;
+	iUsbPortInfo[subPort].iDeviceInfo.iBusNum = 1;
+	strcpy(iUsbPortInfo[subPort].iDeviceInfo.iDeviceID, deviceInfo);
+	strcpy(iUsbPortInfo[subPort].iDeviceInfo.iBusPortInfo, deviceInfo);
+	iCurrentTopology = iUsbPortInfo[subPort].iDeviceInfo.iBusPortInfo;
+	//We don't need the last port number in the USB topology.
+	iCurrentTopology.resize(iCurrentTopology.size() - 2);
+#endif
 	return subPort;
 }
 
@@ -665,11 +693,15 @@ string CFlashToolDialog::GetAdbDeviceName(INT aPortNum) const
 		const CHAR* portInfo = iUsbPortInfo[aPortNum].iDeviceInfo.iBusPortInfo;
 		//Proceed if we have a valid adb device attached to this Port
 		if (deviceID[0] != '\0' && portInfo[0] != '\0') {
+#if 0
 			adbDevice = "\"";
 			adbDevice += deviceID;
 			adbDevice += " ";
 			adbDevice += portInfo;
 			adbDevice += '\"';
+#else
+			adbDevice = deviceID;
+#endif
 		}
 	}
 
@@ -809,8 +841,8 @@ INT CFlashToolDialog::HandleAdbPush(INT aPortNum)
 		ProcessHandler* pProcessHandler = new AdbPushProcessHandler(iADBExeFullName, adbDevice, iImageFileName, destPath, outputFile.c_str());
 		if (pProcessHandler) {
 			retVal = pProcessHandler->LaunchDetachedProcess();
+			delete pProcessHandler;
 		}
-		delete pProcessHandler;
 #endif
 
 		if (retVal == 0) {
@@ -820,5 +852,229 @@ INT CFlashToolDialog::HandleAdbPush(INT aPortNum)
 			retVal = -1;
 		}
 	}
+	return retVal;
+}
+
+INT CFlashToolDialog::ProgramUsbBootReset()
+{
+	INT retVal = 0;
+	HANDLE resetThreadID[NUM_OF_USB] = { 0 };
+	ThreadData threadData[NUM_OF_USB];
+	int index = 0;
+
+	//Set all the Port Checkbox accordingly
+	for (; index < NUM_OF_USB; index++) {
+		if (iUsbPortInfo[index].iSelected) {
+			threadData[index].iFlashToolDialog = this;
+			threadData[index].iIntVal = index;
+
+			resetThreadID[index] = CreateThread(NULL, 0, (LPTHREAD_START_ROUTINE)&UsbBootResetThread, &threadData[index], 0, &threadData[index].iThreadId);
+
+			if (NULL == resetThreadID[index]) {
+				//Creation of thread failed, terminate the loop
+				retVal = -1;
+				break;
+			}
+		}
+	}
+
+	//Now wait for the threads to complete
+	for (index = 0; index < NUM_OF_USB; index++) {
+		if (iUsbPortInfo[index].iSelected && NULL != resetThreadID[index]) {
+			WaitForSingleObject(resetThreadID[index], INFINITE);
+			CloseHandle(resetThreadID[index]);
+		}
+	}
+
+	return retVal;
+}
+
+DWORD CFlashToolDialog::UsbBootResetThread(LPVOID pThreadArg)
+{
+	DWORD retVal = -1;
+	ThreadData* pThreadData = (ThreadData*)pThreadArg;
+	if (pThreadData) {
+		retVal = pThreadData->iFlashToolDialog->HandleUsbBootReset(pThreadData->iIntVal);
+	}
+
+	return retVal;
+}
+
+INT CFlashToolDialog::HandleUsbBootReset(INT aPortNum)
+{
+	INT retVal = -1;
+	string adbDevice = GetAdbDeviceName(aPortNum);
+
+	if (adbDevice.size() >  0) {
+		char fName[50];
+		sprintf(fName, "adbreboot_result_%d.txt", aPortNum);
+		unsigned found = iDeviceListFileName.find_last_of("/\\");
+		string outputFile = iDeviceListFileName.substr(0, found + 1);
+		outputFile += fName;
+		ProcessHandler* pProcessHandler = new AdbResetTrackerProcessHandler(iADBExeFullName, adbDevice, outputFile.c_str());
+		if (pProcessHandler) {
+			retVal = pProcessHandler->LaunchDetachedProcess();
+			delete pProcessHandler;
+			//Once after successfully setting Reset Tracker Register, trigger warm reboot now
+			if (retVal == 0) {
+				pProcessHandler = new AdbWarmBootProcessHandler(iADBExeFullName, adbDevice, outputFile.c_str());
+				if (pProcessHandler) {
+					retVal = pProcessHandler->LaunchDetachedProcess();
+					delete pProcessHandler;
+				}
+			}
+		}
+		if (retVal == 0) {
+			//Successfully rebooted the device on usb mode
+		}
+		else {
+			retVal = -1;
+		}
+	}
+	return retVal;
+}
+
+
+INT CFlashToolDialog::MonitorCPUDetails()
+{
+	INT retVal = 0;
+	HANDLE monitorThreadID[NUM_OF_USB] = { 0 };
+	ThreadData threadData[NUM_OF_USB];
+	int index = 0;
+
+	//Set all the Port Checkbox accordingly
+	for (; index < NUM_OF_USB; index++) {
+		if (iUsbPortInfo[index].iSelected) {
+			threadData[index].iFlashToolDialog = this;
+			threadData[index].iIntVal = index;
+
+			monitorThreadID[index] = CreateThread(NULL, 0, (LPTHREAD_START_ROUTINE)&HandleCPUDetailsThread, &threadData[index], 0, &threadData[index].iThreadId);
+
+			if (NULL == monitorThreadID[index]) {
+				//Creation of thread failed, terminate the loop
+				retVal = -1;
+				break;
+			}
+		}
+	}
+
+	//Now wait for the threads to complete
+	for (index = 0; index < NUM_OF_USB; index++) {
+		if (iUsbPortInfo[index].iSelected && NULL != monitorThreadID[index]) {
+			WaitForSingleObject(monitorThreadID[index], INFINITE);
+			CloseHandle(monitorThreadID[index]);
+		}
+	}
+
+	return retVal;
+}
+
+DWORD CFlashToolDialog::HandleCPUDetailsThread(LPVOID pThreadArg)
+{
+	DWORD retVal = -1;
+	ThreadData* pThreadData = (ThreadData*)pThreadArg;
+	if (pThreadData) {
+		retVal = pThreadData->iFlashToolDialog->HandleCPUDetails(pThreadData->iIntVal);
+	}
+
+	return retVal;
+}
+
+INT CFlashToolDialog::HandleCPUDetails(INT aPortNum)
+{
+	INT retVal = -1;
+	string adbDevice = GetAdbDeviceName(aPortNum);
+	string minFreq;
+	string maxFreq;
+	string currFreq;
+	string currGovernors;
+	string tranLatency;
+
+	if (adbDevice.size() >  0) {
+		string deviceSrcPath("/etc/proc/");
+		char fName[50];
+		unsigned found = iDeviceListFileName.find_last_of("/\\");
+		string outputFile = iDeviceListFileName.substr(0, found + 1);
+		string destPath(outputFile);
+		sprintf(fName, "adbpull_result_%d.txt", aPortNum);
+		outputFile += fName;
+		sprintf(fName, "cpu_details_%d.txt", aPortNum);
+		destPath += fName;
+
+		retVal = GetCPUInfo(iADBExeFullName, adbDevice, gAvailFreq, destPath, outputFile.c_str(), &minFreq, &maxFreq);
+		retVal = GetCPUInfo(iADBExeFullName, adbDevice, gCurFreq, destPath, outputFile.c_str(), &currFreq);
+		retVal = GetCPUInfo(iADBExeFullName, adbDevice, gCurGov, destPath, outputFile.c_str(), &currGovernors);
+		retVal = GetCPUInfo(iADBExeFullName, adbDevice, gLatency, destPath, outputFile.c_str(), &tranLatency);
+
+		if (retVal == 0) {
+			//Successfully pulled the proc file that has CPU information
+			retVal = UpdateCPUInfo(aPortNum, minFreq, maxFreq, currFreq, currGovernors, tranLatency);
+		} else {
+			retVal = -1;
+		}
+	}
+	return retVal;
+}
+
+INT CFlashToolDialog::GetCPUInfo(const wstring& processName, const string& deviceName, const string& srcFile,
+	const string& dstLocation, const CHAR* outputFileName, string* valOne, string* valTwo)
+{
+	INT retVal = -1;
+	INT foundIndex = -1;
+	ProcessHandler* pProcessHandler = new AdbPullProcessHandler(processName, deviceName, srcFile, dstLocation, outputFileName);
+	if (pProcessHandler) {
+		retVal = pProcessHandler->LaunchDetachedProcess();
+		if (retVal == 0) {
+			//Update the min and max frequencies
+			ifstream cpuInfoFile(dstLocation);
+			string entry;
+
+			if (cpuInfoFile.is_open()) {
+				if (getline(cpuInfoFile, entry)) {
+					if (entry[entry.size() - 1] == ' ' || entry[entry.size() - 1] == '\t') {
+						entry.resize(entry.size() - 1);
+					}
+					foundIndex = 0;
+					//Read the first entry
+					if (valOne) {
+						foundIndex = entry.find_first_of(" \t");
+						if (foundIndex == -1) {
+							foundIndex = entry.size();
+						}
+						*valOne = entry.substr(0, foundIndex);
+					}
+					//Read the last entry, if expected to read
+					if (valTwo && foundIndex != -1) {
+						foundIndex = entry.find_last_of(" \t");
+						if (foundIndex != -1) {
+							*valTwo = entry.substr(foundIndex+1);
+						}
+					}
+				}
+			}
+			if (foundIndex == -1) {
+				//Failed to read the CPU Info
+				retVal = -1;
+			}
+		}
+		delete pProcessHandler;
+		remove(dstLocation.c_str());
+	}
+
+	return retVal;
+}
+
+INT CFlashToolDialog::UpdateCPUInfo(INT aPortNum, string minFreq, string maxFreq, string currFreq,
+	string currGovernors, string tranLatency)
+{
+	INT retVal = -1;
+	CHAR cpuInfo[500];
+	WCHAR wCPUInfo[500];
+
+	sprintf(cpuInfo, "CPU Information:\nMin-Frequency: %s\nMax-Frequency: %s\nCurrent-Frequency: %s\nGovernor: %s\nLatency: %s",
+		minFreq.c_str(), maxFreq.c_str(), currFreq.c_str(), currGovernors.c_str(), tranLatency.c_str());
+	mbstowcs(wCPUInfo, cpuInfo, 500);
+
+	MessageBox(NULL, wCPUInfo, L"Info", MB_OK);
 	return retVal;
 }

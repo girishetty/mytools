@@ -90,16 +90,26 @@ private:
 	void ResetDeviceList();
 	INT TriggerADBShell(INT aPortNum);
 	string GetAdbDeviceName(INT aPortNum) const;
+	INT UpdateCPUInfo(INT aPortNum, string minFreq, string maxFreq, string currFreq,
+		string currGovernors, string tranLatency);
+	INT GetCPUInfo(const wstring& processName, const string& deviceName, const string& srcFile,
+		const string& dstLocation, const CHAR* outputFileName, string* valOne, string* valTwo = NULL);
 
 	inline INT GetUsbDeviceCount() const {
 		return iUsbDeviceCount;
 	}
 
 	INT ProgramFCT1();
+	INT ProgramUsbBootReset();
+	INT MonitorCPUDetails();
 	INT HandleAdbPush(INT aPortNum);
+	INT HandleUsbBootReset(INT aPortNum);
+	INT HandleCPUDetails(INT aPortNum);
 	INT StartUpdateADBDeviceListThread(HWND hDlg, BOOL isAttached);
 	static DWORD AdbPushThread(LPVOID pThreadArg);
 	static DWORD UpdateADBDeviceListThread(LPVOID pThreadArg);
+	static DWORD UsbBootResetThread(LPVOID pThreadArg);
+	static DWORD HandleCPUDetailsThread(LPVOID pThreadArg);
 
 private:
 	USBPortInfo iUsbPortInfo[NUM_OF_USB];
