@@ -1,0 +1,121 @@
+/**
+Text in a box
+Rectangle of width w, height h
+
+given:
+int getWidth(int fontSize, char c);
+
+int getHeight(int fontSize);
+
+write:
+int getMaxFontSize(int w, int h, string s);
+
+"This is my input string"
+
+
+Example where font size is too big:
+
+        w
+ ------------------
+ |                |
+h| This is my inpu|
+ |                |
+ ------------------
+
+Example where font size could be bigger:
+
+-----------------------------------------------
+|                                             |
+| This is my input string                     |
+|                                             |
+|                                             |
+|                                             |
+-----------------------------------------------
+
+Assume valid font sizes are in [1, N]
+
+Now allow line wrap at any character:
+
+------------
+|This is m |
+|y input st|
+|ring      |
+------------
+
+*/
+
+1. Take the mid point of font size
+    a. See if that font is with in the "h" that is passed, i.e midfont <= h
+    b. Calculate the width for input string with this font (midfont)
+ 
+//W is the width of the rectangle and h is the height
+//s is the string that we want to display.  
+//Assume valid font sizes are all integers in the range [1, N]
+
+
+int getMaxFontSize(int w, int h, string s)
+{
+    int left = 1;
+    int right = N;
+    int flag = 0;
+    
+    //validate the rect
+    if (w > 0 && h > 0 && s.length() != 0) {
+        do {
+            midFont = getMidFont(left, right);
+            if (canFit(w, h, s, midFont)) {
+                left = midFont;
+            } else {
+                right = midPoint;
+            }
+        } while (left < right);
+   }
+   
+   return leftFont;
+}
+ 
+
+bool canFit(int w, int h, string s, int fontSize)
+{
+    bool fits = false;
+    int totalWidth = 0;
+    
+    if ( h <= getHeight(fontSize) ) {
+        for (int i = 0; i < s.size(); i ++) {
+            totalWidth += getWidth(fontSize, s[i]);
+        }
+        if (totalWidth <= w) {
+            fits = true;
+        }
+    }
+    
+    
+    return fits;
+
+}   
+
+bool canFitMultiline(int w, int h, string s, int fontSize)
+{
+    bool fits = false;
+    int totalWidth = 0;
+    int width  = 0;
+    int line = 0;
+    
+    if ( h <= getHeight(fontSize) ) {
+        for (int i = 0; i < s.size(); i ++) {
+            width = getWidth(fontSize, s[i]);
+            totalWidth += width;
+            if (totalWidth > w ) {
+                totalWidth = width;
+                line++;
+            }
+        }
+        if (h >= line * getHeight(fontSize)) {
+            fits = true;
+        }
+    }
+    
+    
+    return fits;
+}
+   

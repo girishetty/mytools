@@ -15,17 +15,14 @@ def random(size=16):
 
 def encrypt(key, msg):
     c = strxor(key, msg)
-    print "msg"
-    print msg
-    print "cipher"
-    print c.encode('hex')
+    print "msg: " + msg
+    print "cipher: " + c.encode('hex')
     return c
 
 def main():
     #key = random(100)
     key = "secreat"
-    print "key"
-    print key
+    print "key: " + key
     ciphertexts = [encrypt(key, msg) for msg in MSGS]
 
 main()
