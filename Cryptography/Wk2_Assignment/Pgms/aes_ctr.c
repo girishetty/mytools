@@ -20,6 +20,38 @@ int aes_ctr(const UINT8* input, UINT32 inputLen, const UINT8* key, UINT8* iv, UI
     return res;
 }
 
+#ifndef SSL_ENCRYPTION
+/* The input encrypted as though 128bit counter mode is being
+ * used.  The extra state information to record how much of the
+ * 128bit block we have used is contained in *num, and the
+ * encrypted counter is kept in ecount_buf.  Both *num and
+ * ecount_buf must be initialised with zeros before the first
+ * call to AES_ctr128_encrypt().
+ */
+void AES_ctr128_encrypt_(const UINT8* in, UINT8* out,
+                         UINT32 length, const AES_KEY* key,
+                         UINT8 counter[AES_BLOCK_SIZE],
+                         UINT8 ecount_buf[AES_BLOCK_SIZE],
+                         UINT32* num)
+{
+    UINT32 n = 0;
+
+    if (in && out && key && counter && num &&
+        *num < AES_BLOCK_SIZE) {
+
+        n = *num;
+        while (length--) {
+            if (n == 0) {
+                AES_encrypt(counter, ecount_buf, key);
+                AES_ctr128_inc(counter);
+            }
+            *(out++) = *(in++) ^ ecount_buf[n];
+            n = (n + 1) % AES_BLOCK_SIZE;
+        }
+        *num = n;
+    }
+}
+#endif
 
 void aes_ctr_encrypt_(const UINT8* input, UINT32 inputLen, const UINT8* key, UINT8* iv, UINT8* output) {
 
@@ -38,7 +70,11 @@ void aes_ctr_encrypt_(const UINT8* input, UINT32 inputLen, const UINT8* key, UIN
     AES_KEY aesKey;
     AES_set_encrypt_key(key, keylength, &aesKey);
 
+#ifdef SSL_ENCRYPTION
     AES_ctr128_encrypt(input, output + iv_len, inputLen, &aesKey, iv, eCount, &num);
+#else
+    AES_ctr128_encrypt_(input, output + iv_len, inputLen, &aesKey, iv, eCount, &num);
+#endif
 }
 
 void aes_ctr_decrypt_(const UINT8* input, UINT32 inputLen, const UINT8* key, UINT8* iv, UINT8* output) {
@@ -55,5 +91,9 @@ void aes_ctr_decrypt_(const UINT8* input, UINT32 inputLen, const UINT8* key, UIN
     AES_KEY aesKey;
     AES_set_encrypt_key(key, keylength, &aesKey);
 
+#ifdef SSL_ENCRYPTION
     AES_ctr128_encrypt(input, output, inputLen, &aesKey, iv, eCount, &num);
+#else
+    AES_ctr128_encrypt_(input, output, inputLen, &aesKey, iv, eCount, &num);
+#endif
 }

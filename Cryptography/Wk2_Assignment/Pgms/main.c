@@ -127,15 +127,16 @@ void test_set_ctr(const char* input, const char* key, const int inputLen) {
 }
 
 int main () {
-#if 1
     const UINT8* msg = "Girish Soum Shetty";
+#if 0
     test_aes_cbc(msg, key_1, strlen(msg));
-#else
     test_set_cbc(inp_1, key_1, sizeof(inp_1));
     test_set_cbc(inp_2, key_2, sizeof(inp_2));
 
-    test_set_ctr(ctr_inp_1, ctr_key_1, sizeof(ctr_inp_1));
-    test_set_ctr(ctr_inp_2, ctr_key_2, sizeof(ctr_inp_2));
+#else
+    test_set_ctr(msg, ctr_key_1, strlen(msg));
+    //test_set_ctr(ctr_inp_1, ctr_key_1, sizeof(ctr_inp_1));
+    //test_set_ctr(ctr_inp_2, ctr_key_2, sizeof(ctr_inp_2));
 #endif
 }
 

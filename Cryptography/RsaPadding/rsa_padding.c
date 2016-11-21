@@ -9,10 +9,38 @@ typedef int          STATUS;
 void trace_hex_data(const char* what, const unsigned char* pbData, unsigned int len);
 
 #define com_lib_misc_memory_cpy memcpy
+#define com_lib_misc_memory_set memset
 #define secure_memcmp memcmp
 
 #define STATUS_SUCCESS 0x00
 #define STATUS_FAILURE 0xFF
+
+#define COM_CHECK_STATUS(status) if (STATUS_SUCCESS != status) { return status;}
+
+#define MAX_HASH_VALUE_SIZE_IN_BYTE                     64
+#define MAX_DB_SIZE_IN_BYTE                             256-20-1
+
+/*Hash Type:BCM supports MD5,SHA1, SHA224, SHA256, SHA384 and SHA512*/
+// types of algorithms
+typedef enum _ALGORITHM_TYPE
+   {
+   ALG_SHA1,
+   ALG_SHA224,
+   ALG_SHA256,
+   ALG_SHA384,
+   ALG_SHA512,
+   ALG_MD5,
+} ALGORITHM_TYPE;
+
+typedef enum _tagComHashMode{
+    COM_HASH_MODE_MD5         = ALG_MD5,
+    COM_HASH_MODE_SHA1        = ALG_SHA1,
+    COM_HASH_MODE_SHA224      = ALG_SHA224,
+    COM_HASH_MODE_SHA256      = ALG_SHA256,
+    COM_HASH_MODE_SHA384      = ALG_SHA384,
+    COM_HASH_MODE_SHA512      = ALG_SHA512,
+    COM_HASH_MODE_LAST
+}COM_HASH_MODE;
 
 typedef enum _tagComRsaPaddingMode {
    COM_RSA_PADDING_MODE_NO_PADDING               = 0x00000000,
@@ -112,6 +140,67 @@ static STATUS com_lib_rsa_get_T(COM_RSA_PADDING_MODE mode, U8 **T_Hash)
        break;
     }
     return status;
+}
+
+//L Hash Value for RSA-PSS
+U8 lHash_SHA1[20]    = {0xda, 0x39, 0xa3, 0xee, 0x5e, 0x6b, 0x4b, 0x0d , 0x32, 0x55,
+                        0xbf, 0xef, 0x95, 0x60, 0x18, 0x90 , 0xaf, 0xd8, 0x07, 0x09 };
+
+U8 lHash_SHA256[32]  = {0xe3, 0xb0, 0xc4, 0x42, 0x98, 0xfc, 0x1c, 0x14, 0x9a, 0xfb,
+                        0xf4, 0xc8, 0x99, 0x6f, 0xb9, 0x24, 0x27, 0xae, 0x41, 0xe4,
+                        0x64, 0x9b, 0x93, 0x4c, 0xa4, 0x95, 0x99, 0x1b, 0x78, 0x52,
+                        0xb8, 0x55};
+
+U8 lHash_SHA384[48]  = {0x38, 0xb0, 0x60, 0xa7, 0x51, 0xac, 0x96, 0x38, 0x4c, 0xd9,
+                        0x32, 0x7e, 0xb1, 0xb1, 0xe3, 0x6a, 0x21, 0xfd, 0xb7, 0x11,
+                        0x14, 0xbe, 0x07, 0x43, 0x4c, 0x0c, 0xc7, 0xbf, 0x63, 0xf6,
+                        0xe1, 0xda, 0x27, 0x4e, 0xde, 0xbf, 0xe7, 0x6f, 0x65, 0xfb,
+                        0xd5, 0x1a, 0xd2, 0xf1, 0x48, 0x98, 0xb9, 0x5b};
+
+U8 lHash_SHA512[64]  = {0xcf, 0x83, 0xe1, 0x35, 0x7e, 0xef, 0xb8, 0xbd, 0xf1, 0x54,
+                        0x28, 0x50, 0xd6, 0x6d, 0x80, 0x07, 0xd6, 0x20, 0xe4, 0x05,
+                        0x0b, 0x57, 0x15, 0xdc, 0x83, 0xf4, 0xa9, 0x21, 0xd3, 0x6c,
+                        0xe9, 0xce, 0x47, 0xd0, 0xd1, 0x3c, 0x5d, 0x85, 0xf2, 0xb0,
+                        0xff, 0x83, 0x18, 0xd2, 0x87, 0x7e, 0xec, 0x2f, 0x63, 0xb9,
+                        0x31, 0xbd, 0x47, 0x41, 0x7a, 0x81, 0xa5, 0x38, 0x32, 0x7a,
+                        0xf9, 0x27, 0xda, 0x3e};
+
+static STATUS com_lib_rsa_get_lHash(COM_RSA_PADDING_MODE mode, U8 **plHash)
+{
+    STATUS status = STATUS_SUCCESS;
+
+    switch(mode) {
+        case COM_RSA_PADDING_MODE_EME_OAEP_SHA1:
+           *plHash = lHash_SHA1;
+           break;
+        case COM_RSA_PADDING_MODE_EME_OAEP_SHA256:
+           *plHash = lHash_SHA256;
+           break;
+        case COM_RSA_PADDING_MODE_EME_OAEP_SHA384:
+           *plHash = lHash_SHA384;
+           break;
+        case COM_RSA_PADDING_MODE_EME_OAEP_SHA512:
+           *plHash = lHash_SHA512;
+           break;
+        default:
+           *plHash = NULL;
+           status = STATUS_FAILURE;
+           break;
+    }
+    return status;
+}
+
+STATUS com_lib_misc_math_xor(U8 *src_1, U8 *src_2, U8 *dst, U32 size)
+{
+    U32 i = 0;
+
+    if(src_1 == NULL || src_2 == NULL || dst == NULL) return STATUS_FAILURE;
+
+    if(size == 0) return STATUS_SUCCESS;
+
+    for(i=0; i<size; i++) dst[i] = src_1[i]^src_2[i];
+
+    return STATUS_SUCCESS;
 }
 
 /******************************************************************************
@@ -308,81 +397,276 @@ STATUS com_lib_rsa_emsa_pkcs15_decode_(U8* pInput, U32 uInSize, U8* pOutput, U32
     return status;
 }
 
+/******************************************************************************
+**
+** Function:   com_lib_rsa_eme_oaep_encode_
+** Synopsis:   RSA EME OAEP Encoding Interface
+**
+** Arguments:
+**   pInput (IN):       Pointer to message to be padded
+**   uInput (IN):       size of the input message in byte
+**   pOutput (OUT):     Pointer to the padded EM message
+**   uOutput (IN):      size of the padded EM message in byte (key size)
+**   paddingScheme(IN): Padding Mode
+**
+** Returns:    Set the status.h and com_cry_common.h
+**
+** Notes:
+**Refer to RFC3447 Page 19: EME-OAEP Encoding
+**
+** EM = 0x00 || maskedSeed || maskedDB
+**
+**     -->maskedDB = DB xor dbMask
+**          -->dbMask = MGF(seed, k-hLen-1)
+**          -->DB     = lHash || PS || 0x01 || M
+**
+**     -->maskedSeed = seed xor seedMask
+**          -->seedMask = MGF(maskedDB, hLen)
+**
+** Notes:
+**     M:   input message (pInput of size uInSize)
+**     k:   lenght of the RSA modulus (uOutSize)
+**     PS:  Padding String with value 0x00, size of PS is k-mLen-2hLen -2
+**     mLen: input message length (uInSize)
+**     hLen:Hash Length, according to the padding mode, SHA-1:20/SHA-256:48/SHA512:64
+**
+******************************************************************************/
+STATUS com_lib_rsa_eme_oaep_encode_(U8* pInput, U32 uInSize, U8* pOutput, U32 uOutSize,
+                                    COM_RSA_PADDING_MODE paddingScheme, COM_HASH_MODE hash_mode)
+{
+    U32 hLen = 0;
+    U32 dbLen = 0;
+    U32 psLen = 0;
+    U32 maxInLen = 0;
+    U32 uOffset = 0;
+   U8* plHash = NULL;
+    U8* maskedSeed = NULL;
+    U8* maskedDB = NULL;
+    U8  seed[MAX_HASH_VALUE_SIZE_IN_BYTE];
+    U8  seedMask[MAX_HASH_VALUE_SIZE_IN_BYTE];
+    U8  DB[MAX_DB_SIZE_IN_BYTE];
+    U8  dbMask[MAX_DB_SIZE_IN_BYTE];
+    STATUS status = STATUS_FAILURE;
+
+    status = com_lib_rsa_get_padding_hash_size(paddingScheme, &hLen, NULL);
+    if (status != STATUS_SUCCESS) {
+        return 0x5000;
+    }
+    COM_CHECK_STATUS(status);
+
+    //Check if the input size is valid: k - 2hLen - 2
+    maxInLen =  uOutSize - 2 * hLen - 2;
+    if (uInSize > maxInLen) {
+        //return STATUS_FAILURE;
+        return 0x5001;
+    }
+
+    //Generate the PS of size (k - 2hLen - 2 - mLen) zero octates
+    psLen = maxInLen - uInSize;
+    //Get the lHash = Hash(L). Here we take L as empty string
+    status = com_lib_rsa_get_lHash(paddingScheme, &plHash);
+    if (status != STATUS_SUCCESS) {
+        return 0x5002;
+    }
+    COM_CHECK_STATUS(status);
+    //Concatenate lHash, PS, 0x01, M to form DB of size k - hLen - 1
+    dbLen = uOutSize - hLen - 1;
+    uOffset = 0;
+    com_lib_misc_memory_cpy(DB, plHash, hLen);
+    uOffset += hLen;
+    com_lib_misc_memory_set(DB + uOffset, 0, psLen);
+    uOffset += psLen;
+    DB[uOffset] = 0x01;
+    uOffset += 1;
+    com_lib_misc_memory_cpy(DB + uOffset, pInput, uInSize);
+
+    //generate random seed of hLen
+    status = com_lib_drbg_random_generator(seed, hLen);
+    if (status != STATUS_SUCCESS) {
+        return 0x5003;
+    }
+    COM_CHECK_STATUS(status);
+
+    //generate the dbMask = MGF(seed, k - hLen - 1)
+    status = com_lib_rsa_mgf1(seed, hLen, dbMask, dbLen, hash_mode);
+    if (status != STATUS_SUCCESS) {
+        return 0x5004;
+    }
+    COM_CHECK_STATUS(status);
+
+    //maskedDB = DB xor dbMask
+    maskedDB = dbMask;
+    status = com_lib_misc_math_xor(DB, dbMask, maskedDB, dbLen);
+    if (status != STATUS_SUCCESS) {
+        return 0x5005;
+    }
+    COM_CHECK_STATUS(status);
+
+    //Generate the seedMask = MGF(maskedDB, hLen)
+    status = com_lib_rsa_mgf1(maskedDB, dbLen, seedMask, hLen, hash_mode);
+    if (status != STATUS_SUCCESS) {
+        return 0x5006;
+    }
+    COM_CHECK_STATUS(status);
+
+    //maskedSeed = seed xor seedMask
+    maskedSeed = seedMask;
+    status = com_lib_misc_math_xor(seed, seedMask, maskedSeed, hLen);
+    if (status != STATUS_SUCCESS) {
+        return 0x5007;
+    }
+    COM_CHECK_STATUS(status);
+
+    //Concatenate EM = 0x00 || maskedSeed || maskedDB
+    pOutput[0] = 0x00;
+    uOffset = 1;
+    com_lib_misc_memory_cpy(pOutput + uOffset, maskedSeed, hLen);
+    uOffset += hLen;
+    com_lib_misc_memory_cpy(pOutput + uOffset, maskedDB, dbLen);
+
+    return status;
+}
+
+/******************************************************************************
+**
+** Function:   com_lib_rsa_eme_oaep_decode_
+**
+** Synopsis:   RSA EMM OAEP Decoding Interface
+**
+** Arguments:
+**   pInput (IN):       Pointer to the padded EM
+**   uInput (IN):       size of the input message in byte (key size)
+**   pOutput (OUT):     Pointer to the message
+**   pOutput (OUT):     size of the message in byte
+**   paddingScheme(IN): Padding Mode
+**
+** Returns:    Set the status.h and com_cry_common.h
+**
+** Notes:
+**Refer to RFC3447 Page 22: EME-OAEP decoding
+**
+**  EM = Y || maskedSeed || maskedDB
+**
+**    Step 0: Seperate the EM  into three parts: Y(1), maskedSeed(hLen) and maksedDB(k-hLen-1)
+**    Step 1: seedMask = MFG(maskedDB, hLen)
+**    Step 2: seed = maskedSeed XOR seedMask
+**    Step 3: dbMask = MGF(seed, db_size)
+**    Step 4: DB = maskedDB XOR dbMask
+**    Step 5: DB = lHash || PS || 01 ||M
+**    STep 6: Valid the lHash and Calcuate the PS size: ps_size
+**    Step 7: Output the M message and it is size = db_size - 1 - hLen - ps_size
+**
+******************************************************************************/
+STATUS com_lib_rsa_eme_oaep_decode_(U8* pInput, U32 uInSize, U8* pOutput, U32* pOutSize,
+                                    COM_RSA_PADDING_MODE paddingScheme, COM_HASH_MODE hash_mode)
+{
+    U32 hLen = 0;
+    U32 dbLen = 0;
+    U32 psLen = 0;
+    U32 uOffset = 0;
+    U8* plHash = NULL;
+    U8* maskedSeed = NULL;
+    U8* maskedDB = NULL;
+    U8  seed[MAX_HASH_VALUE_SIZE_IN_BYTE];
+    U8  seedMask[MAX_HASH_VALUE_SIZE_IN_BYTE];
+    U8  DB[MAX_DB_SIZE_IN_BYTE];
+    U8  dbMask[MAX_DB_SIZE_IN_BYTE];
+    STATUS status = STATUS_FAILURE;
+
+    status = com_lib_rsa_get_padding_hash_size(paddingScheme, &hLen, NULL);
+    if (status != STATUS_SUCCESS) {
+        return 0x6000;
+    }
+    COM_CHECK_STATUS(status);
+
+    //Check the EM length is not valid, error out
+    if (uInSize < 2 * hLen + 2) {
+        return 0x6001;
+        //return COM_STATUS_FAILURE;
+    }
+
+    //EM = Y(1), maskedSeed(hLen) and maksedDB(k-hLen-1)
+    dbLen = uInSize - hLen - 1;
+    uOffset = 1;
+    maskedSeed = pInput + uOffset;
+    uOffset += hLen;
+    maskedDB = pInput + uOffset;
+
+    //Generate the seedMask = MFG(maskedDB, hLen)
+    status = com_lib_rsa_mgf1(maskedDB, dbLen, seedMask, hLen, hash_mode);
+    if (status != STATUS_SUCCESS) {
+        return 0x6002;
+    }
+    COM_CHECK_STATUS(status);
+
+    //seed = maskedSeed XOR seedMask
+    status = com_lib_misc_math_xor(maskedSeed, seedMask, seed, hLen);
+    if (status != STATUS_SUCCESS) {
+        return 0x6003;
+    }
+    COM_CHECK_STATUS(status);
+
+    //Generate the dbMask = MGF(seed, db_size)
+    status = com_lib_rsa_mgf1(seed, hLen, dbMask, dbLen, hash_mode);
+    if (status != STATUS_SUCCESS) {
+        return 0x6004;
+    }
+    COM_CHECK_STATUS(status);
+
+    //DB = maskedDB XOR dbMask
+    status = com_lib_misc_math_xor(maskedDB, dbMask, DB, dbLen);
+    if (status != STATUS_SUCCESS) {
+        return 0x6005;
+    }
+    COM_CHECK_STATUS(status);
+
+    //DB = lHash || PS || 01 || M
+    //Start check the DB buffer
+    status = com_lib_rsa_get_lHash(paddingScheme, &plHash);
+    if (status != STATUS_SUCCESS) {
+        return 0x6006;
+    }
+    COM_CHECK_STATUS(status);
+
+    //Check the lHash value
+    if (0 != secure_memcmp(DB, plHash, hLen)) {
+        return 0x6007;
+        //return STATUS_FAILURE;
+    }
+
+    //Step 2: Check and validate the PS (with all 0s)
+    psLen = 0;
+    for (uOffset = hLen; uOffset < dbLen; uOffset++) {
+        if (DB[uOffset] != 0x00) {
+            break;
+        }
+        psLen++;
+    }
+
+    //Validate the DB
+    if (uOffset == dbLen) {
+        return 0x6008;
+        //return STATUS_FAILURE;
+    }
+
+    //Check the first byte of EM message
+    if (pInput[0] != 0x00) {
+        return 0x6009;
+        //return STATUS_FAILURE;
+    }
+    //Check for PS separater 0x01
+    if (DB[uOffset] != 0x01) {
+        return 0x600A;
+        //return STATUS_FAILURE;
+    }
+
+    //All good, get the message
+    *pOutSize = dbLen - uOffset;
+    com_lib_misc_memory_cpy(pOutput, DB + uOffset, *pOutSize);
+
+    return status;
+}
 #if 0
-/*
- * Internal Function: RSA EMSA PKCS1.5 encoding
- *
- */
-STATUS com_lib_rsa_emsa_pkcs15_encode_(U8* pInput, U32 uInSize, U8* pOutput, U32 uKeySize)
-{
-    STATUS status = STATUS_FAILURE;
-    U32 uPS       = 0;
-    U32 i         = 0;
-    U32 j         = 0;
-
-    if (pInput && pOutput && uInSize <= (uKeySize - EM_MIN_LEN)) {
-        //The input message (M) should be encoded into: EM = 0x00 || 0x01 || PS || 0x00 || M
-        pOutput[0] = 0x00;
-        pOutput[1] = 0x01;
-        //Calculate PS size and generate non-zero pseudo-random PS string
-        uPS = uKeySize - (uInSize + EM_OTHER_SIZE);
-        generate_random(&pOutput[2], uPS);
-        for (i = 2; i < uPS + 2; i++) {
-            if (pOutput[i] == 0) {
-                pOutput[i] = 0xFF;
-            }
-        }
-
-        pOutput[2 + uPS] = 0x00;
-        j = EM_OTHER_SIZE + uPS;
-        //copy the message (M) to end of output buffer
-        for (i = 0; i < uInSize; i++, j++) {
-            pOutput[j] = pInput[i];
-        }
-        status = STATUS_SUCCESS;
-    }
-
-    return status;
-}
-
-/*
- * Internal Function: RSA EMSA PKCS1.5 decoding
- *
- */
-STATUS com_lib_rsa_emsa_pkcs15_decode_(U8* pInput, U32 uInSize, U8* pOutput, U32* pOutSize)
-{
-    STATUS status = STATUS_FAILURE;
-    U8* pM        = NULL;
-    U32 i         = 0;
-
-    if (pInput && pOutput && pOutSize) {
-        //The input encoded message (EM) should be in this format
-        //EM = 0x00 || 0x01 || PS || 0x00 || M
-        if (pInput[0] == 0x00 && pInput[1] == 0x01) {
-            //Look for PS || 0x00
-            for (i = EM_HEADER_LEN; i < uInSize; i++) {
-                if (pInput[i] == 0x00) {
-                    break;
-                }
-            }
-
-            //Make sure we have found PS || 0x00 and the length of PS >= 8
-            if (i < uInSize && i >= (EM_HEADER_LEN + EM_MIN_PS_LEN)) {
-                status = STATUS_SUCCESS;
-            }
-            //Irrespective of error case - do the following to disable timing attack or failure specific error code
-            //copy the message (M) to output buffer, skip the 0x00 || 0x01 || PS || 0x00
-            *pOutSize = uInSize - (i + 1);
-            pM = pInput + (i + 1);
-            for (i = 0; i < *pOutSize; i++) {
-               pOutput[i] = pM[i];
-            }
-        }
-    }
-
-    return status;
-}
-
 /******************************************************************************
 ** Function:   com_lib_rsa_emsa_pss_encode_
 ** Synopsis:   RSA EMSA PSS Encoding Interface

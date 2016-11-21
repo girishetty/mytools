@@ -53,14 +53,19 @@ public:
     }
 
     void display() const {
-        int index = 0;
-        int size = iList.size();
-        cout<<"Front <";
-        for (; index < size; index++) {
-           cout<<iList[index]<<" ";
+        int index = iList.size() - 1;
+        int tempMin = iMin;
+        int val = 0;
+        cout<<"Top < ";
+        for (; index > 0; index--) {
+           val = iList[index];
+           cout<<val<<" ";
+           if (val == tempMin) {
+               index--;
+               tempMin = iList[index];
+           }
         }
-        cout<<"> Top"<<endl;
-        cout<<"Min: "<<iMin<<endl;
+        cout<<"> Bottom  Min: "<<iMin<<endl;
     }
 
 private:
