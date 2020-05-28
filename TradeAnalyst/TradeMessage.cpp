@@ -650,7 +650,7 @@ const char* TradeMessageList::GetActiveTrader()
         }
     }
 
-    delete pClientOrderList;
+    delete [] pClientOrderList;
     return pActiveTrader;
 }
 
@@ -755,7 +755,7 @@ void TradeMessageList::GetTradesPerInstrument()
         }
     }
 
-    delete instOrderList;
+    delete [] instOrderList;
     count = tempList.size();
     for(index = 0; index < count; index++) {
         pTemp = tempList[index].instrument;

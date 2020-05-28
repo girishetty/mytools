@@ -1,0 +1,1 @@
+gcc -o astm_2004 astm_2004.c calculation.c calculationTest.c unit.c oilproducts.c quantity.c quantityTest.c TestCases.c util.c VBAExport.c calculationTest11_1_6_1.c calculationTest11_1_6_2.c calculationTest11_1_6_3.c calculationTest11_1_7_1.c calculationTest11_1_7_2.c calculationTest11_1_7_3.c -lm

@@ -1,0 +1,38 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: LocaleMoney - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\gshetty\LOCALS~1\Temp\RSP54.tmp" with contents
+[
+/nologo /MLd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_CONSOLE" /D "_MBCS" /Fp"Debug/LocaleMoney.pch" /YX /Fo"Debug/" /Fd"Debug/" /FD /GZ  /c 
+"C:\USERS\Girish\Pgms\LocaleMoney\LocaleMoney.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\gshetty\LOCALS~1\Temp\RSP54.tmp" 
+Creating temporary file "C:\DOCUME~1\gshetty\LOCALS~1\Temp\RSP55.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib  kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /incremental:yes /pdb:"Debug/LocaleMoney.pdb" /debug /machine:I386 /out:"Debug/LocaleMoney.exe" /pdbtype:sept 
+.\Debug\LocaleMoney.obj
+]
+Creating command line "link.exe @C:\DOCUME~1\gshetty\LOCALS~1\Temp\RSP55.tmp"
+<h3>Output Window</h3>
+Compiling...
+LocaleMoney.cpp
+C:\USERS\Girish\Pgms\LocaleMoney\LocaleMoney.cpp(20) : error C2143: syntax error : missing ';' before '<'
+C:\USERS\Girish\Pgms\LocaleMoney\LocaleMoney.cpp(20) : error C2734: 'money_put' : const object must be initialized if not extern
+C:\USERS\Girish\Pgms\LocaleMoney\LocaleMoney.cpp(20) : error C2143: syntax error : missing ';' before '<'
+C:\USERS\Girish\Pgms\LocaleMoney\LocaleMoney.cpp(29) : error C2065: 'mp' : undeclared identifier
+C:\USERS\Girish\Pgms\LocaleMoney\LocaleMoney.cpp(29) : error C2228: left of '.put' must have class/struct/union type
+C:\USERS\Girish\Pgms\LocaleMoney\LocaleMoney.cpp(34) : error C2228: left of '.put' must have class/struct/union type
+Error executing cl.exe.
+
+
+
+<h3>Results</h3>
+LocaleMoney.exe - 6 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

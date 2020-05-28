@@ -1,0 +1,82 @@
+Constructing the Object of Derived now...
+
+BaseMost::BaseMost --> iMem is 1
+Base::Base --> iMem is 0
+DerivedA::DerivedA --> iMem is 3
+DerivedB::DerivedB --> iMem is 2
+DerivedAB::DerivedAB --> iMem is 1
+Derived::Derived --> iMem is 0
+
+Destructing the Object of Derived now...
+
+Derived::~Derived --> iMem is 0
+DerivedAB::~DerivedAB --> iMem is 1
+DerivedB::~DerivedB --> iMem is 2
+DerivedA::~DerivedA --> iMem is 3
+Base::~Base --> iMem is 0
+BaseMost::~BaseMost --> iMem is 1
+Constructing the Object of DerivedAB now...
+
+BaseMost::BaseMost --> iMem is 1
+Base::Base --> iMem is 0
+DerivedA::DerivedA --> iMem is 2
+DerivedB::DerivedB --> iMem is 1
+DerivedAB::DerivedAB --> iMem is 0
+
+Destructing the Object of DerivedAB now...
+
+DerivedAB::~DerivedAB --> iMem is 0
+DerivedB::~DerivedB --> iMem is 1
+DerivedA::~DerivedA --> iMem is 2
+Base::~Base --> iMem is 0
+BaseMost::~BaseMost --> iMem is 1
+
+Size of Base is : 8
+Size of DerivedA is : 16
+Size of DerivedB is : 16
+Size of DerivedAB is : 28
+Size of Derived is : 32
+Press any key to continue
+
+
+
+Constructing the Object of Derived now...
+
+BaseMost::BaseMost --> iMem is 5
+Base::Base --> iMem is 4
+DerivedA::DerivedA --> iMem is 3
+DerivedB::DerivedB --> iMem is 2
+DerivedAB::DerivedAB --> iMem is 1
+Derived::Derived --> iMem is 0
+
+Destructing the Object of Derived now...
+
+Derived::~Derived --> iMem is 0
+DerivedAB::~DerivedAB --> iMem is 1
+DerivedB::~DerivedB --> iMem is 2
+DerivedA::~DerivedA --> iMem is 3
+Base::~Base --> iMem is 4
+BaseMost::~BaseMost --> iMem is 5
+Constructing the Object of DerivedAB now...
+
+BaseMost::BaseMost --> iMem is 4
+Base::Base --> iMem is 3
+DerivedA::DerivedA --> iMem is 2
+DerivedB::DerivedB --> iMem is 1
+DerivedAB::DerivedAB --> iMem is 0
+
+Destructing the Object of DerivedAB now...
+
+DerivedAB::~DerivedAB --> iMem is 0
+DerivedB::~DerivedB --> iMem is 1
+DerivedA::~DerivedA --> iMem is 2
+Base::~Base --> iMem is 3
+BaseMost::~BaseMost --> iMem is 4
+
+Size of Base is : 8
+Size of DerivedA is : 16
+Size of DerivedB is : 16
+Size of DerivedAB is : 28
+Size of Derived is : 32
+Press any key to continue
+

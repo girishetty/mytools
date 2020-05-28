@@ -1,0 +1,74 @@
+
+**Base**
+Object Layout of Base is......
+Address : 0xbfff8c10 --> Content : 134525384
+Address : 0xbfff8c14 --> Content : 20
+
+**DerivedA**
+Object Layout of Base is......
+Address : 0xbfff8c08 --> Content : 134525384
+Address : 0xbfff8c0c --> Content : 20
+Object Layout of DerivedA is......
+Address : 0xbfff8c00 --> Content : 134525324
+Address : 0xbfff8c04 --> Content : 21
+Address : 0xbfff8c08 --> Content : 134525360
+Address : 0xbfff8c0c --> Content : 20
+
+**DerivedB**
+Object Layout of Base is......
+Address : 0xbfff8bf8 --> Content : 134525384
+Address : 0xbfff8bfc --> Content : 20
+Object Layout of DerivedB is......
+Address : 0xbfff8bf0 --> Content : 134525260
+Address : 0xbfff8bf4 --> Content : 22
+Address : 0xbfff8bf8 --> Content : 134525296
+Address : 0xbfff8bfc --> Content : 20
+
+**DerivedAB**
+Object Layout of Base is......
+Address : 0xbfff8be4 --> Content : 134525384
+Address : 0xbfff8be8 --> Content : 20
+Object Layout of DerivedA is......
+Address : 0xbfff8bd0 --> Content : 134525068
+Address : 0xbfff8bd4 --> Content : 21
+Address : 0xbfff8bd8 --> Content : -1073771528
+Address : 0xbfff8bdc --> Content : 134516441
+Object Layout of DerivedB is......
+Address : 0xbfff8bd8 --> Content : 134525004
+Address : 0xbfff8bdc --> Content : 22
+Address : 0xbfff8be0 --> Content : 1
+Address : 0xbfff8be4 --> Content : 134525040
+Object Layout of DerivedAB is......
+Address : 0xbfff8bd0 --> Content : 134525132
+Address : 0xbfff8bd4 --> Content : 21
+Address : 0xbfff8bd8 --> Content : 134525168
+Address : 0xbfff8bdc --> Content : 22
+Address : 0xbfff8be0 --> Content : 23
+Address : 0xbfff8be4 --> Content : 134525204
+Address : 0xbfff8be8 --> Content : 20
+Calling all virtual functions accessible for DerivedAB
+Calling Virtual Functions on : DerivedAB Pointer
+Function#: 1
+DerivedA::Function3()
+Function#: 2
+DerivedA::Function4()
+Calling Virtual Functions on : DerivedAB Pointer
+Function#: 1
+DerivedB::Function5()
+Function#: 2
+DerivedB::Function6()
+Calling Virtual Functions on : DerivedAB Pointer
+Function#: 1
+Base::Function1()
+Function#: 2
+Base::Function2()
+DerivedAB destroyed...
+DerivedB destroyed...
+DerivedA destroyed...
+Base destroyed...
+DerivedB destroyed...
+Base destroyed...
+DerivedA destroyed...
+Base destroyed...
+Base destroyed...
+Done

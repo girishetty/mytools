@@ -27,7 +27,7 @@ public:
 
 template <class Type> union  DataType {
     enum {
-        EMaxSize = 10
+        EMaxSize = 0x10,
     };
 private:
     Type data;
@@ -58,6 +58,7 @@ public:
     void HexValue() const {
         cout<<hex<<data;
     }
+
     void BinValue() const {
         cout<<bitset<sizeof(Type) * CHAR_BIT>(data);
     }

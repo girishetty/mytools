@@ -52,6 +52,7 @@ public:
         return iMin;
     }
 
+    //1 2 2 2 5 4 2 3 3
     void display() const {
         int index = iList.size() - 1;
         int tempMin = iMin;

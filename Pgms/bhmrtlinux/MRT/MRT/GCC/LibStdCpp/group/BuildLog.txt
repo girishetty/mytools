@@ -1,0 +1,183 @@
+  make -r  -f "\EPOC32\BUILD\MRT\GCC\LibStdCpp\group\EXPORT.make" EXPORT VERBOSE=-s
+Nothing to do
+  make -r  -f "\EPOC32\BUILD\MRT\GCC\LibStdCpp\group\WINSCW.make" MAKEFILE VERBOSE=-s
+perl -S makmake.pl  -D \MRT\GCC\LibStdCpp\group\LIBSTDCPP WINSCW  
+  make -r  -f "\EPOC32\BUILD\MRT\GCC\LibStdCpp\group\WINSCW.make" LIBRARY VERBOSE=-s
+make -s  -r -f "\EPOC32\BUILD\MRT\GCC\LibStdCpp\group\LIBSTDCPP\WINSCW\LIBSTDCPP.WINSCW" LIBRARY
+WARNING: Not attempting to create "\EPOC32\RELEASE\WINSCW\UDEB\STDCpp.lib".
+When exports are frozen in "\MRT\GCC\LibStdCpp\BWINS\STDCppU.def", regenerate Makefile.
+  make -r  -f "\EPOC32\BUILD\MRT\GCC\LibStdCpp\group\WINSCW.make" RESOURCE CFG=UDEB VERBOSE=-s
+make -s  -r -f "\EPOC32\BUILD\MRT\GCC\LibStdCpp\group\LIBSTDCPP\WINSCW\LIBSTDCPP.WINSCW" RESOURCEUDEB
+  make -r  -f "\EPOC32\BUILD\MRT\GCC\LibStdCpp\group\WINSCW.make" TARGET CFG=UDEB VERBOSE=-s
+make -s  -r -f "\EPOC32\BUILD\MRT\GCC\LibStdCpp\group\LIBSTDCPP\WINSCW\LIBSTDCPP.WINSCW" UDEB
+ios.cc
+..\Include\bits\locale_classes.h:92: declaration syntax error
+..\Include\bits\locale_classes.h:94: declaration syntax error
+..\Include\bits\locale_classes.h:96: declaration syntax error
+..\Include\bits\locale_classes.h:110: warning: implicit 'int' is no longer supported in C++
+..\Include\bits\locale_classes.h:110: 'const' or '&' variable needs 
+..\Include\bits\locale_classes.h:110: initializer
+..\Include\bits\locale_classes.h:111: warning: implicit 'int' is no longer supported in C++
+..\Include\bits\locale_classes.h:111: data object 'std::category' redefined
+..\Include\bits\locale_classes.h:112: warning: implicit 'int' is no longer supported in C++
+..\Include\bits\locale_classes.h:112: data object 'std::category' redefined
+..\Include\bits\locale_classes.h:113: warning: implicit 'int' is no longer supported in C++
+..\Include\bits\locale_classes.h:113: data object 'std::category' redefined
+..\Include\bits\locale_classes.h:114: warning: implicit 'int' is no longer supported in C++
+..\Include\bits\locale_classes.h:114: data object 'std::category' redefined
+..\Include\bits\locale_classes.h:115: warning: implicit 'int' is no longer supported in C++
+..\Include\bits\locale_classes.h:115: data object 'std::category' redefined
+..\Include\bits\locale_classes.h:116: warning: implicit 'int' is no longer supported in C++
+..\Include\bits\locale_classes.h:116: data object 'std::category' redefined
+..\Include\bits\locale_classes.h:117: warning: implicit 'int' is no longer supported in C++
+..\Include\bits\locale_classes.h:117: data object 'std::category' redefined
+..\Include\bits\locale_classes.h:128: declaration syntax error
+..\Include\bits\locale_classes.h:137: declaration syntax error
+..\Include\bits\locale_classes.h:148: declaration syntax error
+..\Include\bits\locale_classes.h:162: declaration syntax error
+..\Include\bits\locale_classes.h:175: declaration syntax error
+..\Include\bits\locale_classes.h:188: illegal template declaration
+..\Include\bits\locale_classes.h:191: declaration syntax error
+..\Include\bits\locale_classes.h:202: illegal 'operator' declaration
+..\Include\bits\locale_classes.h:226: illegal use of const/volatile function 
+..\Include\bits\locale_classes.h:226: qualifier sequence
+..\Include\bits\locale_classes.h:236: illegal use of const/volatile function 
+..\Include\bits\locale_classes.h:236: qualifier sequence
+..\Include\bits\locale_classes.h:246: illegal use of const/volatile function 
+..\Include\bits\locale_classes.h:246: qualifier sequence
+..\Include\bits\locale_classes.h:265: illegal template declaration
+..\Include\bits\locale_classes.h:266: declaration syntax error
+..\Include\bits\locale_classes.h:279: warning: implicit 'int' is no longer supported in C++
+..\Include\bits\locale_classes.h:280: ';' expected
+..\Include\bits\locale_classes.h:285: warning: implicit 'int' is no longer supported in C++
+..\Include\bits\locale_classes.h:285: identifier 'locale' redeclared
+..\Include\bits\locale_classes.h:285: was declared as: 'int'
+..\Include\bits\locale_classes.h:285: now declared as: 'const int'
+..\Include\bits\locale_classes.h:286: declaration syntax error
+..\Include\bits\locale_classes.h:288: declaration syntax error
+..\Include\bits\locale_classes.h:290: declaration syntax error
+..\Include\bits\locale_classes.h:293: warning: implicit 'int' is no longer supported in C++
+..\Include\bits\locale_classes.h:293: object '_Impl' redefined
+..\Include\bits\locale_classes.h:296: warning: implicit 'int' is no longer supported in C++
+..\Include\bits\locale_classes.h:296: data object '_Impl' redefined
+..\Include\bits\locale_classes.h:302: 'const' or '&' variable needs 
+..\Include\bits\locale_classes.h:302: initializer
+..\Include\bits\locale_classes.h:321: warning: implicit 'int' is no longer supported in C++
+..\Include\bits\locale_classes.h:321: illegal use of 'explicit'
+..\Include\bits\locale_classes.h:329: warning: implicit 'int' is no longer supported in C++
+..\Include\bits\locale_classes.h:330: ';' expected
+..\Include\bits\locale_classes.h:333: warning: implicit 'int' is no longer supported in C++
+..\Include\bits\locale_classes.h:333: ')' expected
+..\Include\bits\locale_classes.h:334: declaration syntax error
+..\Include\bits\locale_classes.h:347: undefined identifier 'locale'
+..\Include\bits\locale_classes.h:348: name has not been declared in namespace/
+..\Include\bits\locale_classes.h:348: class
+..\Include\bits\locale_classes.h:349: declaration syntax error
+..\Include\bits\locale_classes.h:350: declaration syntax error
+..\Include\bits\locale_classes.h:351: declaration syntax error
+..\Include\bits\locale_classes.h:358: warning: implicit 'int' is no longer supported in C++
+..\Include\bits\locale_classes.h:358: ';' expected
+..\Include\bits\locale_classes.h:362: 'const' or '&' variable needs 
+..\Include\bits\locale_classes.h:362: initializer
+..\Include\bits\locale_classes.h:371: declaration syntax error
+..\Include\bits\locale_classes.h:382: warning: implicit 'int' is no longer supported in C++
+..\Include\bits\locale_classes.h:382: illegal use of 'explicit'
+..\Include\bits\locale_classes.h:383: ';' expected
+..\Include\bits\locale_classes.h:387: warning: implicit 'int' is no longer supported in C++
+..\Include\bits\locale_classes.h:387: declaration syntax error
+..\Include\bits\locale_classes.h:390: illegal function definition
+..\Include\bits\locale_classes.h:391: identifier '__c_locale' redeclared
+..\Include\bits\locale_classes.h:391: was declared as: 'int'
+..\Include\bits\locale_classes.h:391: now declared as: 'char'
+..\Include\bits\locale_classes.h:393: warning: implicit 'int' is no longer supported in C++
+..\Include\bits\locale_classes.h:394: data object '__c_locale' redefined
+..\Include\bits\locale_classes.h:397: illegal function definition
+..\Include\bits\locale_classes.h:401: warning: implicit 'int' is no longer supported in C++
+..\Include\bits\locale_classes.h:402: object '__c_locale' redefined
+..\Include\bits\locale_classes.h:407: declaration syntax error
+..\Include\bits\locale_classes.h:410: illegal use of const/volatile function 
+..\Include\bits\locale_classes.h:410: qualifier sequence
+..\Include\bits\locale_classes.h:414: illegal use of const/volatile function 
+..\Include\bits\locale_classes.h:414: qualifier sequence
+..\Include\bits\locale_classes.h:418: illegal use of 'this'
+..\Include\bits\locale_classes.h:424: declaration syntax error
+..\Include\bits\locale_classes.h:426: declaration syntax error
+..\Include\bits\locale_classes.h:427: declaration syntax error
+..\Include\bits\locale_classes.h:428: declaration syntax error
+..\Include\bits\locale_classes.h:441: declaration syntax error
+..\Include\bits\locale_classes.h:443: declaration syntax error
+..\Include\bits\locale_classes.h:444: declaration syntax error
+..\Include\bits\locale_classes.h:445: declaration syntax error
+..\Include\bits\locale_classes.h:447: declaration syntax error
+..\Include\bits\locale_classes.h:449: declaration syntax error
+..\Include\bits\locale_classes.h:460: warning: implicit 'int' is no longer supported in C++
+..\Include\bits\locale_classes.h:460: ')' expected
+..\Include\bits\locale_classes.h:462: declaration syntax error
+..\Include\bits\locale_classes.h:464: declaration syntax error
+..\Include\bits\locale_classes.h:468: declaration syntax error
+..\Include\bits\locale_classes.h:471: illegal use of const/volatile function 
+..\Include\bits\locale_classes.h:471: qualifier sequence
+..\Include\bits\locale_classes.h:472: declaration syntax error
+..\Include\bits\locale_classes.h:476: declaration syntax error
+..\Include\bits\locale_classes.h:478: declaration syntax error
+..\Include\bits\locale_classes.h:480: declaration syntax error
+..\Include\bits\locale_classes.h:481: declaration syntax error
+..\Include\bits\locale_classes.h:483: declaration syntax error
+..\Include\bits\locale_classes.h:485: declaration syntax error
+..\Include\bits\locale_classes.h:487: declaration syntax error
+..\Include\bits\locale_classes.h:489: declaration syntax error
+..\Include\bits\locale_classes.h:491: data object '_M_refcount' redefined
+..\Include\bits\locale_classes.h:492: warning: implicit 'int' is no longer supported in C++
+..\Include\bits\locale_classes.h:492: identifier 'facet' redeclared
+..\Include\bits\locale_classes.h:492: was declared as: 'locale'
+..\Include\bits\locale_classes.h:492: now declared as: 'const int'
+..\Include\bits\locale_classes.h:494: warning: implicit 'int' is no longer supported in C++
+..\Include\bits\locale_classes.h:494: identifier 'facet' redeclared
+..\Include\bits\locale_classes.h:494: was declared as: 'locale'
+..\Include\bits\locale_classes.h:494: now declared as: 'const int'
+..\Include\bits\locale_classes.h:496: undefined identifier 'id'
+..\Include\bits\locale_classes.h:497: undefined identifier 'id'
+..\Include\bits\locale_classes.h:498: undefined identifier 'id'
+..\Include\bits\locale_classes.h:499: undefined identifier 'id'
+..\Include\bits\locale_classes.h:500: undefined identifier 'id'
+..\Include\bits\locale_classes.h:501: undefined identifier 'id'
+..\Include\bits\locale_classes.h:502: undefined identifier 'id'
+..\Include\bits\locale_classes.h:506: object '_M_add_reference()' redefined
+..\Include\bits\locale_classes.h:510: object '_M_remove_reference()' redefined
+..\Include\bits\locale_classes.h:514: illegal use of 'this'
+..\Include\bits\locale_classes.h:520: declaration syntax error
+..\Include\bits\locale_classes.h:521: declaration syntax error
+..\Include\bits\locale_classes.h:522: declaration syntax error
+..\Include\bits\locale_classes.h:524: declaration syntax error
+..\Include\bits\locale_classes.h:526: declaration syntax error
+..\Include\bits\locale_classes.h:529: warning: implicit 'int' is no longer supported in C++
+..\Include\bits\locale_classes.h:529: ')' expected
+..\Include\bits\locale_classes.h:543: warning: implicit 'int' is no longer supported in C++
+..\Include\bits\locale_classes.h:543: ')' expected
+..\Include\bits\locale_classes.h:546: warning: implicit 'int' is no longer supported in C++
+..\Include\bits\locale_classes.h:546: ')' expected
+..\Include\bits\locale_classes.h:549: warning: implicit 'int' is no longer supported in C++
+..\Include\bits\locale_classes.h:549: ')' expected
+..\Include\bits\locale_classes.h:552: undefined identifier 'id'
+..\Include\bits\locale_classes.h:560: warning: implicit 'int' is no longer supported in C++
+..\Include\bits\locale_classes.h:560: ')' expected
+..\Include\bits\locale_classes.h:561: declaration syntax error
+..\Include\bits\locale_classes.h:562: declaration syntax error
+..\Include\bits\locale_classes.h:563: declaration syntax error
+..\Include\bits\locale_classes.h:564: declaration syntax error
+..\Include\bits\locale_classes.h:565: declaration syntax error
+..\Include\bits\locale_classes.h:568: undefined identifier '?0'
+..\Include\bits\locale_classes.h:573: declaration syntax error
+..\Include\bits\locale_classes.h:574: declaration syntax error
+..\Include\bits\locale_classes.h:576: declaration syntax error
+..\Include\bits\locale_classes.h:577: declaration syntax error
+..\Include\bits\locale_classes.h:578: declaration syntax error
+..\Include\bits\locale_classes.h:579: declaration syntax error
+..\Include\bits\locale_classes.h:580: declaration syntax error
+..\Include\bits\locale_classes.h:581: declaration syntax error
+..\Include\bits\locale_classes.h:582: declaration syntax error
+..\Include\bits\locale_classes.h:583: declaration syntax error
+..\Include\bits\locale_classes.h:584: declaration syntax error
+..\Include\bits\locale_classes.h:585: declaration syntax error
+..\Include\bits\locale_classes.h:586: declaration syntax error
+  make -r  -f "\EPOC32\BUILD\MRT\GCC\LibStdCpp\group\WINSCW.make" FINAL CFG=UDEB VERBOSE=-s

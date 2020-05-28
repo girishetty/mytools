@@ -1,0 +1,35 @@
+TARGET          STDCpp.dll
+TARGETTYPE      dll
+UID             0x1000008D 0x101FB3E3
+
+#if defined(EKA2)
+CAPABILITY	ALL -TCB
+#endif
+
+DEFFILE         STDCpp.def
+
+SOURCEPATH      ..\src
+
+//SOURCE 		string-inst.cc
+SOURCE 		ios.cc
+//SOURCE 		istream.cc
+
+//GCC relted Headers
+SYSTEMINCLUDE   \MRT\GCC\Gcc
+SYSTEMINCLUDE   \MRT\GCC\Gcc\ginclude
+SYSTEMINCLUDE   \MRT\GCC\Include
+SYSTEMINCLUDE   \MRT\GCC\Include\sys
+SYSTEMINCLUDE   \MRT\GCC\LibStdCpp\config\io
+SYSTEMINCLUDE   \MRT\GCC\LibStdCpp\Include\bits
+SYSTEMINCLUDE   \MRT\GCC\LibStdCpp\Include\c_compatibility
+SYSTEMINCLUDE   \MRT\GCC\LibStdCpp\Include\c_std
+SYSTEMINCLUDE   \MRT\GCC\LibStdCpp\Include\std
+SYSTEMINCLUDE   \MRT\GCC\LibStdCpp\libsupcpp
+
+SYSTEMINCLUDE   \epoc32\include 
+SYSTEMINCLUDE   \epoc32\include\libc
+SYSTEMINCLUDE   \epoc32\include\internal
+
+LANG			SC
+
+// End of File

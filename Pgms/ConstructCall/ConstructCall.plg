@@ -1,0 +1,35 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: ConstructCall - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\gshetty\LOCALS~1\Temp\RSP45.tmp" with contents
+[
+/nologo /MLd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_CONSOLE" /D "_MBCS" /Fp"Debug/ConstructCall.pch" /YX /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"C:\Users\Girish\Pgms\ConstructCall\ConstructCall.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\gshetty\LOCALS~1\Temp\RSP45.tmp" 
+Creating temporary file "C:\DOCUME~1\gshetty\LOCALS~1\Temp\RSP46.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /incremental:yes /pdb:"Debug/ConstructCall.pdb" /debug /machine:I386 /out:"Debug/ConstructCall.exe" /pdbtype:sept 
+.\Debug\ConstructCall.obj
+]
+Creating command line "link.exe @C:\DOCUME~1\gshetty\LOCALS~1\Temp\RSP46.tmp"
+<h3>Output Window</h3>
+Compiling...
+ConstructCall.cpp
+C:\Users\Girish\Pgms\ConstructCall\ConstructCall.cpp(22) : error C2833: 'operator strlen' is not a recognized operator or type
+C:\Users\Girish\Pgms\ConstructCall\ConstructCall.cpp(22) : error C2059: syntax error : 'newline'
+C:\Users\Girish\Pgms\ConstructCall\ConstructCall.cpp(22) : error C2334: unexpected token(s) preceding '{'; skipping apparent function body
+Error executing cl.exe.
+
+
+
+<h3>Results</h3>
+ConstructCall.exe - 3 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

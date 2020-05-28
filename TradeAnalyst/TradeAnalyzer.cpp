@@ -51,4 +51,5 @@ void TradeAnalyzer::GetStatistics()
         cout<<highLiquid_trader;
     }
     iList.GetTradesPerInstrument();
+    cout<<endl;
 }

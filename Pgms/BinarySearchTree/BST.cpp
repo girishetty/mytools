@@ -26,6 +26,7 @@ bool BinarySearchTree::Add(int aVal) {
     } else {
         iRoot = new BSTNode(aVal);
     }
+    cout << "Added: " << aVal << " And now theDiameter is: " << GetDiameter() << endl;
     return success;
 }
 
@@ -46,7 +47,7 @@ bool BinarySearchTree::Remove(int aVal) {
                 success = true;
             }
         } else {
-            BSTNode* pRemoveNode = iRoot->Remove(aVal, NULL);
+            BSTNode* pRemoveNode = iRoot->Remove(aVal, nullptr);
             if (pRemoveNode) {
                 delete pRemoveNode;
                 success = true;
@@ -73,3 +74,50 @@ void BinarySearchTree::Display() const {
         cout<<"<empty>"<<endl;
     }
 }
+
+size_t BinarySearchTree::GetDiameter() const {
+  size_t maxLen = 0;
+  maxDown(iRoot, maxLen);
+  return maxLen;
+}
+
+size_t BinarySearchTree::maxDown(BSTNode* node, size_t& maxLen) const {
+  if (!node) {
+    return 0;
+  }
+  size_t maxLeft = maxDown(node->Left(), maxLen);
+  size_t maxRght = maxDown(node->Right(), maxLen);
+  maxLen = std::max(maxLen, maxLeft + maxRght);
+  return std::max(maxLeft, maxRght) + 1;
+}
+
+BSTNode* BinarySearchTree::BinarySearchTreeToDoubleLinkedList() {
+  BSTNode* head = nullptr;
+  BSTNode* prev = nullptr;
+  ConvertToDoubleLinkedList(iRoot, prev, head);
+  return head;
+}
+
+void BinarySearchTree::ConvertToDoubleLinkedList(BSTNode* node, BSTNode* prev, BSTNode*& head) {
+  // Exit condition.
+  if (node == nullptr) {
+    return;
+  }
+
+  // Recursively convert left subtree.
+  ConvertToDoubleLinkedList(node->Left(), prev, head);
+
+  // Now convert this node.
+  node->Left(prev);
+  if (prev == nullptr) {
+    // We have found the head of Doubly-Linked List now.
+    head = node;
+  } else {
+    prev->Right(node);
+  }
+  prev = node;
+
+  // Finally convert right subtree.
+  ConvertToDoubleLinkedList(node->Right(), prev, head);
+}
+

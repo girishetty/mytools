@@ -1,0 +1,133 @@
+Making chocolate chip cookies involves putting chocolate chips on a cookie-dough which is rolled into a plane about 50 cm square. Circles of diameter 5 cm are cut from the plane to from a chocolate chip cookie. Each chip is visible in the planar dough and you have to find a cookie which has the maximum number of chocolate chips inside the cookie (i.e. circle of 5 cm).
+
+The Method ChocolateChip contains 3 parameters. First one is X coordinates and second one is Y coordinates, which is of double array data type. All coordinates are in-between 0.0(cm) and 50.0(cm). Each chip may be considered a small point (i.e. ignore the size of the chocolate chip). Each chip is at a different position. Third one is the number of coordinates. There are at most 200 chocolate chips (i.e. size of the first 2 arrays is less than 200).
+
+Write a program to find the maximum number of chocolate chips that is contained in a single cookie of diameter 5 cm. The cookies have to be cut in the dough such that they are arranged symmetrically. (For example, first 4 cookies have to be at centered at following coordinates: (2.5, 2.5), (7.5, 2.5), (2.5, 7.5) and (7.5, 7.5).
+
+The Prototype of the Function is :
+
+int ChocolateChip(double x[], double y[], int noOfCoordinates)
+
+Where x is a double array of x coordinates, y is a double array of y coordinates and noOfCoordinates represents the number of coordinates.
+The Function returns integer value of the maximum number of ChocolateChip present in a cookie.
+Constraints
+
+All coordinates are in-between 0.0(cm) and 50.0(cm) else return -1.
+The noOfCoordinates should be greater than zero, else return –1.
+If there is no chocolate chip contained in any cookie of diameter 5 cm, than return 0.
+Each chip may be considered a point. Each chip is at a different position.
+Example 1
+
+Input
+     int noOfCoordinates = 5 (chocolate chips coordinates) 
+     x[0] = 1.0,    y[0] = 1.0 
+     x[1] = 2.3,    y[1] = 2.1 
+     x[2] = 2.8,    y[2] = 3.0 
+     x[3] = 5.5,    y[3] = 6.1 
+     x[4] = 7.0,    y[4] = 8.9
+Output
+The Function returns 3.
+
+Explanation: First cookie which is in centered at (2.5, 2.5) has 3 chocolate chips and second cookie which is in centered at (7.5, 7.5) has 2 chocolate chips. Therefore 3 chocolate chips are the maximum.
+Example 2
+
+Input
+    int noOfCoordinates=10 
+    x[0] = 1.0,    y[0] = 1.0 
+    x[1] = 3.2,    y[1] = 2.0 
+    x[2] = 4.5,    y[2] = 3.0 
+    x[3] = 11.0,  y[3] = 2.0 
+    x[4] = 1.4,    y[4] = 2.5 
+    x[5] = 4.4,    y[5] = 4.5 
+    x[6] = 2.8,    y[6] = 3.5 
+    x[7] = 1.8,    y[7] = 2.5 
+    x[8] = 13.4,  y[8] = 4.5 
+    x[9] = 14.4,  y[9] = 3.5
+Output
+The Function returns 6.
+Explanation: First cookie which is in centered at (2.5, 2.5) has 6 chocolate chips {(1.0,1.0), (3.2, 2.0), (4.5, 3.0), (1.4, 2.5), (2.8, 3.5), (1.8, 2.5)} and other cookie which is in centered at (12.5, 2.5) has 3 chocolate chips {(11.0, 2.0), (13.4, 4.5), (14.4, 3.5)} and the chip (4.4, 4.5) is outside of any cookie. Therefore 6 chocolate chips are the maximum.
+For C solutions
+
+Header File	:	Chocolate.h
+Function Name	:	 int ChocolateChip(double x[], double y[], int noOfCoordinates)
+File Name	:	Chocolate.c
+For C++ solutions
+
+Header File	:	Chocolate.h
+Class Name	:	 chocolate
+Function Name	:	 int ChocolateChip(double x[], double y[], int noOfCoordinates)
+FileName	:	Chocolate.cpp
+General Instructions
+    *	
+The file / class names, functions, method signatures, header files to be used are mentioned in the problem statement. Do not use your own names or change the method signatures and fields. You can add any number of additional methods.
+
+    *	
+Do not forget to mention the file extension, either .c or .cpp as the case maybe.
+
+    *	
+For C solutions, change the value of "C_OR_CPP" macro in header file as 1 and for C++ solutions change the value as 2.
+
+    *	 Incase of iostream.h specify as iostream only.
+
+
+
+========================
+Least Remaining Time
+
+You have an internet browsing center and because of some hardware problems only one machine is currently working fine. In order to control your customers allow them to use that machine one by one for a given time slot. The person who has minimum balance browsing time is allowed to use the machine first and once the time slot or his browsing time is over then that person has to wait till every one has their turn. 
+
+All the users are now allowed in the minimum browsing time left order. After the first turn is finished for all users, they will be allowed to use for their 2nd turn with same constraint. This process will go on until all users have finished browsing. You have to return the schedule of browsing in the order in which each person started to use the machine (for all their turns).
+
+The Prototype of the Function is :
+
+struct IntArray getSchedule(int browsingTime[], int noOfPersons, int timeSlot)
+
+Where browsingTime is an array of time the customer wants to browse, noOfPersons represents the size of the browsingtime array and timeSlot is integer value of Time for each customer to access the machine.
+The Function returns structure IntArray which contains the integer array of schedule (the order in which each person uses the machine) and the size of the array.
+Constraints
+
+You can take the customer names as 1,2,3 and so on.
+ The balance browsing time of each customer will be given in an array as same as order of customer name.
+ If there is any customer with lesser balance browsing period than the common time slot then he can browse until the common time slot expires.
+Example 1
+
+Input
+         balance_browsing_time={10,7,3,4,11}, 
+         number_of_persons = 5, 
+         Time_slot=5
+Output
+getSchedule() returns struct IntArray = (schedule = {3,4,2,1,5,2,1,5,5} and nSize = 9).
+Explanation:
+First arrange the customers based on the balance browsing time. Thus the first user will be the 3rd customer who has the balance browsing time of only 3. Then the next customer is 4th one who has the balance time of 4. Then second customer has the balance time of 7 so first time he will use the machine up to the time slot expires then will wait in the queue. The last user is 5th user having the execution time of 11 and he will use the machine up to the first time slot expires and goes to the queue. Now all the users have used the machine once and they can again use it in the order of short remaining balance browsing. Here 2nd user has the shortest remaining time of 2 and he will use the machine and this process will continue up to all users dispatched from the queue.
+
+Example 2
+
+Input
+         balance_browsing_time={3,7,14,4,11}, 
+         number_of_persons = 5, 
+         Time_slot=7
+Output
+getSchedule() returns struct IntArray = (schedule = {1,4,2,5,3,5,3} and nSize = 7).
+For C solutions
+
+Header File	:	leastremainingtime.h
+Function Name	:	 struct IntArray getSchedule(int browsingTime[], int noOfPersons, int timeSlot)
+File Name	:	leastremainingtime.c
+For C++ solutions
+
+Header File	:	leastremainingtime.h
+Class Name	:	 Browsing
+Function Name	:	struct IntArray getSchedule(int browsingTime[], int noOfPersons, int timeSlot)
+FileName	:	leastremainingtime.cpp
+General Instructions
+    *	
+The file / class names, functions, method signatures, header files to be used are mentioned in the problem statement. Do not use your own names or change the method signatures and fields. You can add any number of additional methods.
+
+    *	
+Do not forget to mention the file extension, either .c or .cpp as the case maybe.
+
+    *	
+For C solutions, change the value of "C_OR_CPP" macro in header file to 1 and for C++ solutions change the value to 2.
+
+    *	 Incase of iostream.h specify as iostream only.
+

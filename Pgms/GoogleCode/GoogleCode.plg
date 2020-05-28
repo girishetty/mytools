@@ -1,0 +1,46 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: GoogleCode - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\gshetty\LOCALS~1\Temp\RSPB9.tmp" with contents
+[
+/nologo /MLd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_CONSOLE" /D "_MBCS" /Fp"Debug/GoogleCode.pch" /YX /Fo"Debug/" /Fd"Debug/" /FD /GZ  /c 
+"C:\Users\Girish\Pgms\GoogleCode\GoogleCode.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\gshetty\LOCALS~1\Temp\RSPB9.tmp" 
+Creating temporary file "C:\DOCUME~1\gshetty\LOCALS~1\Temp\RSPBA.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib  kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /incremental:yes /pdb:"Debug/GoogleCode.pdb" /debug /machine:I386 /out:"Debug/GoogleCode.exe" /pdbtype:sept 
+.\Debug\GoogleCode.obj
+]
+Creating command line "link.exe @C:\DOCUME~1\gshetty\LOCALS~1\Temp\RSPBA.tmp"
+<h3>Output Window</h3>
+Compiling...
+GoogleCode.cpp
+c:\users\girish\pgms\googlecode\check.h(173) : error C2010: '.' : unexpected in macro formal parameter list
+c:\users\girish\pgms\googlecode\check.h(173) : error C2010: '.' : unexpected in macro formal parameter list
+c:\users\girish\pgms\googlecode\check.h(173) : error C2010: '.' : unexpected in macro formal parameter list
+c:\users\girish\pgms\googlecode\check.h(173) : error C2010: ')' : unexpected in macro formal parameter list
+c:\users\girish\pgms\googlecode\check.h(181) : error C2010: '.' : unexpected in macro formal parameter list
+c:\users\girish\pgms\googlecode\check.h(181) : error C2010: '.' : unexpected in macro formal parameter list
+c:\users\girish\pgms\googlecode\check.h(181) : error C2010: '.' : unexpected in macro formal parameter list
+c:\users\girish\pgms\googlecode\check.h(181) : error C2010: ')' : unexpected in macro formal parameter list
+c:\users\girish\pgms\googlecode\check.h(186) : error C2010: '.' : unexpected in macro formal parameter list
+c:\users\girish\pgms\googlecode\check.h(186) : error C2010: '.' : unexpected in macro formal parameter list
+c:\users\girish\pgms\googlecode\check.h(186) : error C2010: '.' : unexpected in macro formal parameter list
+c:\users\girish\pgms\googlecode\check.h(336) : error C2146: syntax error : missing ';' before identifier 'check_fork'
+c:\users\girish\pgms\googlecode\check.h(336) : error C2501: 'pid_t' : missing storage-class or type specifiers
+c:\users\girish\pgms\googlecode\check.h(336) : fatal error C1004: unexpected end of file found
+Error executing cl.exe.
+
+
+
+<h3>Results</h3>
+GoogleCode.exe - 14 error(s), 0 warning(s)
+</pre>
+</body>
+</html>
