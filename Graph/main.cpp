@@ -28,7 +28,7 @@ private:
 class Graph { 
 public: 
   Graph(size_t vertex) : mVertex(vertex) {
-    mAdjList = new list<AdjListNode>[mVertex];
+    mAdjList = new vector<AdjListNode>[mVertex];
   }
 
   ~Graph() {
@@ -50,6 +50,9 @@ public:
 
   int FindMother();
 
+  // A BFS based function to check whether d is reachable from s.
+  bool isReachable(int s, int d) const;
+
 private:
   void DFSUtil(int v, vector<bool>& visited, bool print = true);
 
@@ -58,32 +61,74 @@ private:
   size_t mVertex;
   
   // Pointer to an array containing adjacency lists.
-  list<AdjListNode>* mAdjList = nullptr;
+  vector<AdjListNode>* mAdjList = nullptr;
 };
 
-void Graph::BFS(int beginVertex) { 
-  // Mark all the vertices as not visited
-  bool* visited = new bool[mVertex];
-  for (size_t i = 0; i < mVertex; i++) {
-    visited[i] = false;
+bool Graph::isReachable(int s, int d) const {
+  // Base case
+  if (s == d) {
+    return true;
   }
 
+  // Mark all the vertices as not visited
+  vector<bool> visited(mVertex, false);
+
   // Create a queue for BFS
-  list<int> queue; 
-  
+  list<int> queue;
+
   // Mark the current node as visited and enqueue it.
-  visited[beginVertex] = true; 
-  queue.push_back(beginVertex); 
-  
+  visited[s] = true;
+  queue.push_back(s);
+
+  // it will be used to get all adjacent vertices of a vertex.
+  vector<AdjListNode>::const_iterator i;
+
+  while (!queue.empty()) {
+    // Dequeue a vertex from queue and print it.
+    s = queue.front();
+    queue.pop_front();
+
+    // Get all adjacent vertices of the dequeued vertex s.
+    // If a adjacent has not been visited, then mark it visited and enqueue it.
+    for (i = mAdjList[s].begin(); i != mAdjList[s].end(); ++i) {
+      // If this adjacent node is the destination node, then  return true.
+      auto vertex = i->getVertex();
+      if (vertex  == d) {
+        return true;
+      }
+
+      // Else, continue to do BFS 
+      if (!visited[vertex]) { 
+        visited[vertex] = true;
+        queue.push_back(vertex);
+      }
+    } 
+  }
+
+  // If BFS is complete without visiting d 
+  return false; 
+}
+
+void Graph::BFS(int beginVertex) {
+  // Mark all the vertices as not visited.
+  vector<bool> visited(mVertex, false);
+
+  // Create a queue for BFS
+  list<int> queue;
+
+  // Mark the current node as visited and enqueue it.
+  visited[beginVertex] = true;
+  queue.push_back(beginVertex);
+
   // 'i' will be used to get all adjacent vertices of a vertex.
-  list<AdjListNode>::iterator i;
-  
+  vector<AdjListNode>::iterator i;
+
   while (!queue.empty()) {
     // Dequeue a vertex from queue and print it
     beginVertex = queue.front();
     cout << beginVertex << " ";
     queue.pop_front();
-  
+
     // Get all adjacent vertices of the dequeued vertex s.
     // If a adjacent has not been visited, then mark it visited and enqueue it.
     for (i = mAdjList[beginVertex].begin(); i != mAdjList[beginVertex].end(); ++i) {
@@ -104,7 +149,7 @@ void Graph::DFSUtil(int v, vector<bool>& visited, bool print) {
   }
 
   // Recur for all the vertices adjacent to this vertex.
-  list<AdjListNode>::iterator i;
+  vector<AdjListNode>::iterator i;
   for (i = mAdjList[v].begin(); i != mAdjList[v].end(); ++i) {
     if (!visited[i->getVertex()]) {
       DFSUtil(i->getVertex(), visited, print); 
@@ -174,5 +219,8 @@ int main() {
   g.DFS(2);
 
   cout << "Mother Vertex is: " << g.FindMother() << std::endl;
+
+  cout << "There is a Path between (0, 3): " << g.isReachable(0, 3) << std::endl;
+  cout << "There is a Path between (3, 0): " << g.isReachable(3, 0) << std::endl;
   return 0;
 }
