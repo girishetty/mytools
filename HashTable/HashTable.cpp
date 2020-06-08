@@ -1,53 +1,51 @@
-# include <iostream>
+#include <iostream>
 #include "LinkedList.h"
 #include "HashTable.h"
 
-//Global creation function
-HashTable* HashTable::CreateHashTable(size_t aTableSize)
-{
-    HashTable* pNew = new HashTable(aTableSize);
-    if (pNew) {
-        pNew = pNew->Construct();
-    }
+using std::cout;
+using std::endl;
+using std::string;
 
-    return pNew;
+//Global creation function
+HashTable* HashTable::CreateHashTable(size_t aTableSize) {
+  HashTable* pNew = new HashTable(aTableSize);
+  if (pNew) {
+    pNew = pNew->Construct();
+  }
+
+  return pNew;
 }
 
 //Default contructor
-HashTable::HashTable(size_t aTableSize) : iTableSize(aTableSize), iLength(0)
-{
+HashTable::HashTable(size_t aTableSize) : iTableSize(aTableSize), iLength(0) {
 }
 
 //Hiding Copy constructor from user
-HashTable::HashTable(const HashTable& aTable) : iTableSize(0)
-{
+HashTable::HashTable(const HashTable& aTable) : iTableSize(0) {
 }
 
 //Hiding assignment operator from user
-HashTable& HashTable::operator=(const HashTable& aTable)
-{
-    return *this;
+HashTable& HashTable::operator=(const HashTable& aTable) {
+  return *this;
 }
 
 //Private helper for constructor
-HashTable* HashTable::Construct()
-{
-    HashTable* pTable = this;
+HashTable* HashTable::Construct() {
+  HashTable* pTable = this;
 
-    iTable = new LinkedList[iTableSize];
-    if (!iTable) {
-        //Something went wrong, do self destruction and return NULL
-        delete this;
-        pTable = NULL;
-    }
+  iTable = new LinkedList[iTableSize];
+  if (!iTable) {
+    //Something went wrong, do self destruction and return nullptr
+    delete this;
+    pTable = nullptr;
+  }
 
-    return pTable;
+  return pTable;
 }
 
 //Public Destructor
-HashTable::~HashTable()
-{
-    delete [] iTable;
+HashTable::~HashTable() {
+  delete [] iTable;
 }
 
 #define USE_DBJ_HASH_FUNCTION
@@ -55,30 +53,29 @@ HashTable::~HashTable()
 #ifdef USE_DBJ_HASH_FUNCTION
 /*
  * This algorithm was first reported by Dan Bernstein many years ago in comp.lang.c.
- *     hash(i) = hash(i - 1) * 33 + str[i];
+ *   hash(i) = hash(i - 1) * 33 + str[i];
  * Another version of this algorithm (now favored by Bernstein) uses xor:
- *     hash(i) = hash(i - 1) * 33 ^ str[i];
+ *   hash(i) = hash(i - 1) * 33 ^ str[i];
  * Reference: http://www.cse.yorku.ca/~oz/hash.html
  *
- * We are adding extra logic to wrap the hash-index to be with int HashTable size
+ * We are adding extra logic to wrap the hash-index to be with in HashTable size
  */
 const size_t kDJB2Const = 5381;
 
-size_t HashTable::HashIndex(const string& aKey) const
-{
-    size_t        hashIndex = 0;
-    unsigned long hash = kDJB2Const;
-    int           index = 0;
-    int           size = aKey.size();
+size_t HashTable::HashIndex(const string& aKey) const {
+  size_t    hashIndex = 0;
+  unsigned long hash = kDJB2Const;
+  int       index = 0;
+  int       size = aKey.size();
 
-    for (index = 0; index < size; index++) {
-        //hash(i) = hash(i - 1) * 33 ^ str[i]
-        hash = ((hash << 5) + hash) ^ aKey[index];
-    }
+  for (index = 0; index < size; index++) {
+    //hash(i) = hash(i - 1) * 33 ^ str[i]
+    hash = ((hash << 5) + hash) ^ aKey[index];
+  }
 
-    //As HashTable size is iTableSize, lets make sure the index is in the range.
-    hashIndex = (size_t) (hash % iTableSize);
-    return hashIndex;
+  //As HashTable size is iTableSize, lets make sure the index is in the range.
+  hashIndex = (size_t) (hash % iTableSize);
+  return hashIndex;
 }
 #else
 /*
@@ -95,177 +92,155 @@ size_t HashTable::HashIndex(const string& aKey) const
  * We are adding extra logic to wrap the hash-index to be with int HashTable size
  */
 
-size_t HashTable::HashIndex(const string& aKey) const
-{
-    size_t        hashIndex = 0;
-    unsigned long hash = 0;
-    int           index = 0;
-    int           size = aKey.size();
+size_t HashTable::HashIndex(const string& aKey) const {
+  size_t    hashIndex = 0;
+  unsigned long hash = 0;
+  int       index = 0;
+  int       size = aKey.size();
 
-    for (index = 0; index < size; index++) {
-        //hash(i) = hash(i - 1) * 65599 + str[i]
-        hash = (hash << 6) + (hash << 16) - hash + aKey[index];
-    }
+  for (index = 0; index < size; index++) {
+    //hash(i) = hash(i - 1) * 65599 + str[i]
+    hash = (hash << 6) + (hash << 16) - hash + aKey[index];
+  }
 
-    //As HashTable size is iTableSize, lets make sure the index is in the range.
-    hashIndex = (size_t) (hash % iTableSize);
-    return hashIndex;
+  //As HashTable size is iTableSize, lets make sure the index is in the range.
+  hashIndex = (size_t) (hash % iTableSize);
+  return hashIndex;
 }
 #endif
 
 //Public interfaces for Inserting a Node to the HashTable
 //On SUCCESS returns true; false otherwise
-bool HashTable::Insert(Node* pNode, bool bOwnIt)
-{
-    bool   bSuccess = false;
-    size_t hashIndex = 0;
+bool HashTable::Insert(Node* pNode, bool bOwnIt) {
+  bool   bSuccess = false;
+  size_t hashIndex = 0;
 
-    if (pNode) {
-        hashIndex = HashIndex(pNode->Value());
-        bSuccess = iTable[hashIndex].Insert(pNode, bOwnIt);
-        if (bSuccess) {
-            iLength++;
-        }
-    }
-
-    return bSuccess;
-}
-
-bool HashTable::Insert(const string& aValue)
-{
-    bool   bSuccess = false;
-    size_t hashIndex = 0;
-
-    hashIndex = HashIndex(aValue);
-    bSuccess = iTable[hashIndex].Insert(aValue);
+  if (pNode) {
+    hashIndex = HashIndex(pNode->Value());
+    bSuccess = iTable[hashIndex].Insert(pNode, bOwnIt);
     if (bSuccess) {
-        iLength++;
+      iLength++;
     }
+  }
 
-    return bSuccess;
+  return bSuccess;
 }
 
-bool HashTable::Insert(const char* pValue)
-{
-    bool   bSuccess = false;
-    size_t hashIndex = 0;
-    string val(pValue);
+bool HashTable::Insert(const string& aValue) {
+  bool   bSuccess = false;
+  size_t hashIndex = 0;
 
-    if (pValue) {
-        hashIndex = HashIndex(val);
-        bSuccess = iTable[hashIndex].Insert(val);
-        if (bSuccess) {
-            iLength++;
-        }
+  hashIndex = HashIndex(aValue);
+  bSuccess = iTable[hashIndex].Insert(aValue);
+  if (bSuccess) {
+    iLength++;
+  }
+
+  return bSuccess;
+}
+
+bool HashTable::Insert(const char* pValue) {
+  bool   bSuccess = false;
+  size_t hashIndex = 0;
+  string val(pValue);
+
+  if (pValue) {
+    hashIndex = HashIndex(val);
+    bSuccess = iTable[hashIndex].Insert(val);
+    if (bSuccess) {
+      iLength++;
     }
+  }
 
-    return bSuccess;
+  return bSuccess;
 }
 
 //Public interfaces for Removing a Node by its value from the HashTable
 //On SUCCESS returns true; false otherwise
-bool HashTable::Remove(const string& aValue)
-{
-    bool   bSuccess = false;
-    size_t hashIndex = 0;
+bool HashTable::Remove(const string& aValue) {
+  bool   bSuccess = false;
+  size_t hashIndex = 0;
 
-    hashIndex = HashIndex(aValue);
-    bSuccess = iTable[hashIndex].Remove(aValue);
-    if (bSuccess) {
-        iLength--;
-    }
+  hashIndex = HashIndex(aValue);
+  bSuccess = iTable[hashIndex].Remove(aValue);
+  if (bSuccess) {
+    iLength--;
+  }
 
-    return bSuccess;
+  return bSuccess;
 }
 
-bool HashTable::Remove(const char* pValue)
-{
-    bool   bSuccess = false;
-    size_t hashIndex = 0;
-    string val(pValue);
+bool HashTable::Remove(const char* pValue) {
+  bool   bSuccess = false;
+  size_t hashIndex = 0;
+  string val(pValue);
 
-    if (pValue) {
-        hashIndex = HashIndex(val);
-        bSuccess = iTable[hashIndex].Remove(val);
-        if (bSuccess) {
-            iLength--;
-        }
+  if (pValue) {
+    hashIndex = HashIndex(val);
+    bSuccess = iTable[hashIndex].Remove(val);
+    if (bSuccess) {
+      iLength--;
     }
+  }
 
-    return bSuccess;
+  return bSuccess;
 }
 
 //Public interfaces for Finding a Node by its value from the HashTable
-//On SUCCESS returns the Node; NULL otherwise
-Node* HashTable::Find(const string& aValue) const
-{
-    Node*  pNode = NULL;
-    size_t hashIndex = 0;
+//On SUCCESS returns the Node; nullptr otherwise
+Node* HashTable::Find(const string& aValue) const {
+  Node*  pNode = nullptr;
+  size_t hashIndex = 0;
 
-    hashIndex = HashIndex(aValue);
-    pNode = iTable[hashIndex].Find(aValue);
+  hashIndex = HashIndex(aValue);
+  pNode = iTable[hashIndex].Find(aValue);
 
-    return pNode;
+  return pNode;
 }
 
-Node* HashTable::Find(const char* pValue) const
-{
-    Node*  pNode = NULL;
-    size_t hashIndex = 0;
-    string val(pValue);
+Node* HashTable::Find(const char* pValue) const {
+  Node*  pNode = nullptr;
+  size_t hashIndex = 0;
+  string val(pValue);
 
-    if (pValue) {
-        hashIndex = HashIndex(val);
-        pNode = iTable[hashIndex].Find(val);
-    }
+  if (pValue) {
+    hashIndex = HashIndex(val);
+    pNode = iTable[hashIndex].Find(val);
+  }
 
-    return pNode;
-}
-
-//Public retriever for Size of the HashTable
-size_t HashTable::Size() const
-{
-    return iTableSize;
-}
-
-//Public retriever for number of items in the HashTable
-size_t HashTable::Count() const
-{
-    return iLength;
+  return pNode;
 }
 
 //Public interface for Printing the HashTable
-void HashTable::Print() const
-{
-    int index = 0;
+void HashTable::Print() const {
+  int index = 0;
 
-    cout << "HashTable: Total Items (" << iLength << "): {" << endl;
-    for (index = 0; index < iTableSize; index++) {
-        if (iTable[index].Size() > 0) {
-            cout << "HashTable: Bucket [" << index + 1 << "] : ";
-            iTable[index].Print();
-        }
+  cout << "HashTable: Total Items (" << iLength << "): {" << endl;
+  for (index = 0; index < iTableSize; index++) {
+    if (iTable[index].Size() > 0) {
+      cout << "HashTable: Bucket [" << index + 1 << "] : ";
+      iTable[index].Print();
     }
-    cout << "}" << endl;
+  }
+  cout << "}" << endl;
 }
 
 //Public interface for Displaying the Histogram of the HashTable
-void HashTable::Histogram() const
-{
-    int    index = 0;
-    int    insideIndex = 0;
-    size_t listSize = 0;
+void HashTable::Histogram() const {
+  int  index = 0;
+  int  insideIndex = 0;
+  size_t listSize = 0;
 
-    cout << "HashTable: Total Items (" << iLength << "): {" << endl;
-    for (index = 0; index < iTableSize; index++) {
-        listSize = iTable[index].Size();
-        if (listSize > 0) {
-            cout << "HashTable: Bucket [" << index + 1 << "] : ";
-            for (insideIndex = 0; insideIndex < listSize; insideIndex++) {
-               cout << " X";
-            }
-            cout << endl;
-        }
+  cout << "HashTable: Total Items (" << iLength << "): {" << endl;
+  for (index = 0; index < iTableSize; index++) {
+    listSize = iTable[index].Size();
+    if (listSize > 0) {
+      cout << "HashTable: Bucket [" << index + 1 << "] : ";
+      for (insideIndex = 0; insideIndex < listSize; insideIndex++) {
+         cout << " X";
+      }
+      cout << endl;
     }
-    cout << "}" << endl;
+  }
+  cout << "}" << endl;
 }
