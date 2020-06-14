@@ -31,7 +31,7 @@ bool Graph::isReachable(int s, int d) const {
   vector<AdjListNode>::const_iterator i;
 
   while (!queue.empty()) {
-    // Dequeue a vertex from queue and print it.
+    // Dequeue a vertex from queue.
     s = queue.front();
     queue.pop_front();
 
@@ -40,7 +40,7 @@ bool Graph::isReachable(int s, int d) const {
     for (i = mAdjList[s].begin(); i != mAdjList[s].end(); ++i) {
       // If this adjacent node is the destination node, then  return true.
       auto vertex = i->getVertex();
-      if (vertex  == d) {
+      if (vertex == d) {
         return true;
       }
 
