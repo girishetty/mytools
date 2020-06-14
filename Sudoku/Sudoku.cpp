@@ -102,11 +102,6 @@ bool Sudoku::SolvePuzzle(UINT row, UINT col) {
 }
 
 bool Sudoku::FindNextUnassignedSlot(UINT& row, UINT& col) const {
-#if 1
-#else
-    row = 0;
-    col = 0;
-#endif
     for (;row < SUDOKU_SIZE; row++) {
         for (; col < SUDOKU_SIZE; col++) {
            if (iSudokuGrid[row][col] == 0) {

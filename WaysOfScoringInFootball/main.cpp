@@ -87,7 +87,6 @@ size_t findPossibilities(size_t totalScore, const std::vector<size_t>& values) {
  * This method uses recursive implementation.
  */
 size_t findPossibilitiesRecursive(int totalScore, const std::vector<size_t>& values) {
-
   if (totalScore == 0) {
     return 1;
   } else if (totalScore < 0) {
