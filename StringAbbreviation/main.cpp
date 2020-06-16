@@ -76,28 +76,19 @@ string abbreviation(const string& a, const string& b) {
 }
 #else
 string abbreviation(const string& a, const string& b) {
-  // bool array [a.length() + 1][b.length() + 1]
-  vector<vector<bool>> dp(a.length() + 1);
-  for (auto row = 0; row <= a.length(); row++) {
-    dp[row].resize(b.length() + 1);
-  }
+  // bool array [a.length() + 1][b.length() + 1] and set all of them as false.
+  vector<vector<bool>> dp(a.length() + 1, vector<bool>(b.length() + 1, false));
 
   // case#1: when both a and b are empty.
   dp[0][0] = true;
 
   // case#2: a is non-empty and b is empty, then dp is true only if all the characters in a are lower case.
-  bool foundUppercase = false;
   for (size_t row = 1; row <= a.length(); row++) {
-    size_t aIndex = row - 1;
-
-    if (foundUppercase || isupper(a[aIndex])) {
-      // We have found a uppercase a[index]
-      foundUppercase = true;
-      dp[row][0] = false;
-    } else {
-      // We haven't found a uppercase a[index] yet
-      dp[row][0] = true;
+    if (isupper(a[row - 1])) {
+      break;
     }
+    // We haven't found a uppercase a[index] yet
+    dp[row][0] = true;
   }
 
   // case#3: other cases. fill in dp matrix
@@ -125,21 +116,21 @@ string abbreviation(const string& a, const string& b) {
 #endif
 
 int main() {
-    int q;
-    cin >> q;
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+  int q;
+  cin >> q;
+  cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
-    for (int q_itr = 0; q_itr < q; q_itr++) {
-        string a;
-        getline(cin, a);
+  for (int q_itr = 0; q_itr < q; q_itr++) {
+    string a;
+    getline(cin, a);
 
-        string b;
-        getline(cin, b);
+    string b;
+    getline(cin, b);
 
-        string result = abbreviation(a, b);
+    string result = abbreviation(a, b);
 
-        cout << result << "\n";
-    }
+    cout << result << "\n";
+  }
 
-    return 0;
+  return 0;
 }
