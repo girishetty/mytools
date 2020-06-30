@@ -5,7 +5,7 @@
 
 #include <vector>
 
-// Graph is represented using adjacency list. Everynode of adjacency list contains vertex number of
+// Graph is represented using adjacency list. Every node of adjacency list contains vertex number of
 // the vertex to which edge connects. It also contains weight of the edge.
 class AdjListNode {
 public:

@@ -51,7 +51,7 @@ long countTriplets(const vector<long>& arr, long r) {
   // Idea here is that maintain 2 hash tables, which
   // maintains the pair of <value, occurances>
   // One that is for the 2nd occurance (vale * r, occurance)
-  // One that is for the 3rd occurance (vale * r *, occurance)
+  // One that is for the 3rd occurance (vale * r * r, occurance)
   // For every item, do this following:
   //  - Check if its in 2nd hash table.
   //    If so, we have found the triplet - increment the count based on this occurance.

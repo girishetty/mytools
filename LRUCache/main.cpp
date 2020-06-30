@@ -41,13 +41,13 @@ public:
       // Check if the Cache is full already, in which case we need to evict the LRU (back) item.
       if (mQueue.size() == capasity) {
         auto lru = mQueue.back();
-        mQueue.pop_back();
         mCacheMap.erase(lru.first);
+        mQueue.pop_back();
         evicted = true;
       }
       // update reference 
       mQueue.push_front(make::pair<Key, Item>(key, item));
-      ma[key] = mQueue.begin(); 
+      mCacheMap[key] = mQueue.begin();
     } else {
       // Already present in the Cache. So just move it to the front of the list
       retrieve(key, item);
