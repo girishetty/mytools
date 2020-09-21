@@ -32,20 +32,18 @@ try to reuse free’d memory
 uint8_t mem_region[HEAPMEMORY_SIZE] = {0};
 
 typedef struct MemoryBlock {
-  MemoryBlock* pAddress = nullptr;
   size_t size;
   MemoryBlock* pNextBlock = nullptr;
 } MemoryBlock;
 
 //Table of available memory blocks with position and the size
-MemoryBlock* gAvailbleList = nullptr;
+MemoryBlock* gAvailbleList = (MemoryBlock*)mem_region;
 //Table of consumed memory blocks with position and the size
 MemoryBlock* gUsedList = nullptr;
 
 void* malloc(size_t size) {
-  if (gAvailbleList == nullptr) {
-    gAvailbleList = (MemoryBlock*)&mem_region;
-    gAvailbleList->pAddress = (MemoryBlock*)&mem_region;
+  if (gAvailbleList->size == 0) {
+    // Very first time ==> Whole of mem_region is available now.
     gAvailbleList->size = HEAPMEMORY_SIZE - sizeof(MemoryBlock);
     gAvailbleList->pNextBlock = nullptr;
   }
@@ -53,6 +51,7 @@ void* malloc(size_t size) {
   MemoryBlock* previous = nullptr;
   do {
     if (available->size < size) {
+      // Look at next available block.
       previous = available;
       available = available->pNextBlock;
     } else {
@@ -76,7 +75,6 @@ void* malloc(size_t size) {
     available->size = size;
     uint8_t* address = (uint8_t*)available + sizeof(MemoryBlock) + size;
     MemoryBlock* newAvailable = (MemoryBlock*)address;
-    newAvailable->pAddress = (MemoryBlock*)address;
     newAvailable->size = excess;
     newAvailable->pNextBlock = available->pNextBlock;
     if (previous) {
@@ -93,14 +91,14 @@ void* malloc(size_t size) {
   available->pNextBlock = gUsedList;
   gUsedList = available;
 
-  return (uint8_t*)available->pAddress + sizeof(MemoryBlock);
+  return (uint8_t*)available + sizeof(MemoryBlock);
 }
 
 void free(void* p) {
   if (p == nullptr) {
     return;
   }
-  uint8_t* address = (uint8_t*) p - sizeof(MemoryBlock);
+  uint8_t* address = (uint8_t*)p - sizeof(MemoryBlock);
   MemoryBlock* thisBlock = (MemoryBlock*)address;
   if (thisBlock == gUsedList) {
     gUsedList = thisBlock->pNextBlock;
