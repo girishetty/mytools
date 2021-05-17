@@ -26,7 +26,16 @@ try to reuse free’d memory
 #include <cstdint>
 #include <cstring>
 
-#define ALIGN_FOURBYTES(ptr) (((ptr) + 4) & (~4))
+#define ALIGN(value, bytes) (((value) + bytes) & (~(bytes - 1)))
+
+inline int Align(int value, int bytes) {
+  int mask = (bytes - 1);
+  if (value & mask) {
+    value = (((value) + bytes) & (~mask));
+  }
+  return value;
+}
+
 #define HEAPMEMORY_SIZE 1000
 
 uint8_t mem_region[HEAPMEMORY_SIZE] = {0};
