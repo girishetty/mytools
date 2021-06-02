@@ -1,0 +1,616 @@
+GIRISH: MediaPresentationDescriptionParser::ParseMediaPresentationDescription: name: BaseURL depth: 1 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseMediaPresentationDescription: name: Location depth: 1 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseMediaPresentationDescription: name: Period depth: 1 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParsePeriod: name: AdaptationSet depth: 2 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: ContentProtection depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseContentProtection: name: pro depth: 4 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseContentProtection: name: pro depth: 4 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseContentProtection: name: ContentProtection depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: ContentProtection depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseContentProtection: name: pssh depth: 4 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseContentProtection: name: pssh depth: 4 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseContentProtection: name: ContentProtection depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: ContentProtection depth: 3 line: 1
+ParseContentProtection Emptry Element: ContentProtection
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: SegmentTemplate depth: 3 line: 1
+GIRISH: ParseUrlTemplate: name: media Value: $RepresentationID$_Segment-$Time$.m4v
+GIRISH: ParseUrlTemplate: name: initialization Value: $RepresentationID$_init.m4i
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTemplate: timescale: 10000000 presentationTimeOffset: 1833565734008 duration: -1 startNumber: 1
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTemplate: name: SegmentTimeline depth: 4 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTimeline: name: S depth: 5 line: 1
+elapsed_time: 1833611780008 duration: 60060000
+elapsed_time: 1833671840008 duration: 60060000
+elapsed_time: 1833731900008 duration: 60060000
+elapsed_time: 1833791960008 duration: 60060000
+elapsed_time: 1833852020008 duration: 60060000
+elapsed_time: 1833912080008 duration: 60060000
+elapsed_time: 1833972140008 duration: 60060000
+GIRISH: elapsed_time: 1834032200008 duration: 60060000 r: 6
+NextSibling Emptry Element: S
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTimeline: name: S depth: 5 line: 1
+elapsed_time: 1834032200008 duration: 33366667
+GIRISH: elapsed_time: 1834065566675 duration: 33366667 r: 0
+NextSibling Emptry Element: S
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTimeline: name: SegmentTimeline depth: 4 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTemplate: name: SegmentTemplate depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: Representation depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseRepresentation: name: Representation id: 1538425790529item-1item mime: video/mp4 codecs: avc1.4d401f line: 1
+ParseRepresentation Emptry Element: Representation
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: Representation depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseRepresentation: name: Representation id: 1538425790529item-2item mime: video/mp4 codecs: avc1.4d401f line: 1
+ParseRepresentation Emptry Element: Representation
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: Representation depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseRepresentation: name: Representation id: 1538425790529item-3item mime: video/mp4 codecs: avc1.4d401f line: 1
+ParseRepresentation Emptry Element: Representation
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: Representation depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseRepresentation: name: Representation id: 1538425790529item-4item mime: video/mp4 codecs: avc1.4d401f line: 1
+ParseRepresentation Emptry Element: Representation
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: Representation depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseRepresentation: name: Representation id: 1538425790529item-5item mime: video/mp4 codecs: avc1.4d401f line: 1
+ParseRepresentation Emptry Element: Representation
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: Representation depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseRepresentation: name: Representation id: 1538425790529item-6item mime: video/mp4 codecs: avc1.4d401f line: 1
+ParseRepresentation Emptry Element: Representation
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: Representation depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseRepresentation: name: Representation id: 1538425790529item-7item mime: video/mp4 codecs: avc1.4d4029 line: 1
+ParseRepresentation Emptry Element: Representation
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: AdaptationSet depth: 2 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParsePeriod: name: AdaptationSet depth: 2 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: ContentProtection depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseContentProtection: name: pro depth: 4 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseContentProtection: name: pro depth: 4 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseContentProtection: name: ContentProtection depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: ContentProtection depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseContentProtection: name: pssh depth: 4 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseContentProtection: name: pssh depth: 4 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseContentProtection: name: ContentProtection depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: ContentProtection depth: 3 line: 1
+ParseContentProtection Emptry Element: ContentProtection
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: InbandEventStream depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: SegmentTemplate depth: 3 line: 1
+GIRISH: ParseUrlTemplate: name: media Value: $RepresentationID$_Segment-$Time$.m4a
+GIRISH: ParseUrlTemplate: name: initialization Value: $RepresentationID$_init.m4i
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTemplate: timescale: 10000000 presentationTimeOffset: 1833565734008 duration: -1 startNumber: 1
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTemplate: name: SegmentTimeline depth: 4 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTimeline: name: S depth: 5 line: 1
+elapsed_time: 1833612172925 duration: 59733333
+GIRISH: elapsed_time: 1833671906258 duration: 59733333 r: 0
+NextSibling Emptry Element: S
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTimeline: name: S depth: 5 line: 1
+elapsed_time: 1833671906258 duration: 60160000
+elapsed_time: 1833732066258 duration: 60160000
+elapsed_time: 1833792226258 duration: 60160000
+GIRISH: elapsed_time: 1833852386258 duration: 60160000 r: 2
+NextSibling Emptry Element: S
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTimeline: name: S depth: 5 line: 1
+elapsed_time: 1833852386258 duration: 59733334
+GIRISH: elapsed_time: 1833912119592 duration: 59733334 r: 0
+NextSibling Emptry Element: S
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTimeline: name: S depth: 5 line: 1
+elapsed_time: 1833912119592 duration: 60160000
+elapsed_time: 1833972279592 duration: 60160000
+GIRISH: elapsed_time: 1834032439592 duration: 60160000 r: 1
+NextSibling Emptry Element: S
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTimeline: name: S depth: 5 line: 1
+elapsed_time: 1834032439592 duration: 33280000
+GIRISH: elapsed_time: 1834065719592 duration: 33280000 r: 0
+NextSibling Emptry Element: S
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTimeline: name: SegmentTimeline depth: 4 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTemplate: name: SegmentTemplate depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: Representation depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseRepresentation: name: Representation id: 1538425790529item-8item mime: audio/mp4 codecs: mp4a.40.5 line: 1
+ParseRepresentation Emptry Element: Representation
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: AdaptationSet depth: 2 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParsePeriod: name: AdaptationSet depth: 2 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: ContentProtection depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseContentProtection: name: pro depth: 4 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseContentProtection: name: pro depth: 4 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseContentProtection: name: ContentProtection depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: ContentProtection depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseContentProtection: name: pssh depth: 4 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseContentProtection: name: pssh depth: 4 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseContentProtection: name: ContentProtection depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: ContentProtection depth: 3 line: 1
+ParseContentProtection Emptry Element: ContentProtection
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: InbandEventStream depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: SegmentTemplate depth: 3 line: 1
+GIRISH: ParseUrlTemplate: name: media Value: $RepresentationID$_Segment-$Time$.m4a
+GIRISH: ParseUrlTemplate: name: initialization Value: $RepresentationID$_init.m4i
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTemplate: timescale: 10000000 presentationTimeOffset: 1833565734008 duration: -1 startNumber: 1
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTemplate: name: SegmentTimeline depth: 4 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTimeline: name: S depth: 5 line: 1
+elapsed_time: 1833566092925 duration: 46080000
+GIRISH: elapsed_time: 1833612172925 duration: 46080000 r: 0
+NextSibling Emptry Element: S
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTimeline: name: S depth: 5 line: 1
+elapsed_time: 1833612172925 duration: 59733333
+GIRISH: elapsed_time: 1833671906258 duration: 59733333 r: 0
+NextSibling Emptry Element: S
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTimeline: name: S depth: 5 line: 1
+elapsed_time: 1833671906258 duration: 60160000
+elapsed_time: 1833732066258 duration: 60160000
+elapsed_time: 1833792226258 duration: 60160000
+GIRISH: elapsed_time: 1833852386258 duration: 60160000 r: 2
+NextSibling Emptry Element: S
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTimeline: name: S depth: 5 line: 1
+elapsed_time: 1833852386258 duration: 59733334
+GIRISH: elapsed_time: 1833912119592 duration: 59733334 r: 0
+NextSibling Emptry Element: S
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTimeline: name: S depth: 5 line: 1
+elapsed_time: 1833912119592 duration: 60160000
+elapsed_time: 1833972279592 duration: 60160000
+GIRISH: elapsed_time: 1834032439592 duration: 60160000 r: 1
+NextSibling Emptry Element: S
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTimeline: name: S depth: 5 line: 1
+elapsed_time: 1834032439592 duration: 33280000
+GIRISH: elapsed_time: 1834065719592 duration: 33280000 r: 0
+NextSibling Emptry Element: S
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTimeline: name: SegmentTimeline depth: 4 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTemplate: name: SegmentTemplate depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: Representation depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseRepresentation: name: Representation id: 1538425790529item-9item mime: audio/mp4 codecs: mp4a.40.5 line: 1
+ParseRepresentation Emptry Element: Representation
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: AdaptationSet depth: 2 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParsePeriod: name: AdaptationSet depth: 2 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: ContentProtection depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseContentProtection: name: pro depth: 4 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseContentProtection: name: pro depth: 4 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseContentProtection: name: ContentProtection depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: ContentProtection depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseContentProtection: name: pssh depth: 4 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseContentProtection: name: pssh depth: 4 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseContentProtection: name: ContentProtection depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: ContentProtection depth: 3 line: 1
+ParseContentProtection Emptry Element: ContentProtection
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: InbandEventStream depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: SegmentTemplate depth: 3 line: 1
+GIRISH: ParseUrlTemplate: name: media Value: $RepresentationID$_Segment-$Time$.m4a
+GIRISH: ParseUrlTemplate: name: initialization Value: $RepresentationID$_init.m4i
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTemplate: timescale: 10000000 presentationTimeOffset: 1833565734008 duration: -1 startNumber: 1
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTemplate: name: SegmentTimeline depth: 4 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTimeline: name: S depth: 5 line: 1
+elapsed_time: 1833566092925 duration: 46080000
+GIRISH: elapsed_time: 1833612172925 duration: 46080000 r: 0
+NextSibling Emptry Element: S
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTimeline: name: S depth: 5 line: 1
+elapsed_time: 1833612172925 duration: 59733333
+GIRISH: elapsed_time: 1833671906258 duration: 59733333 r: 0
+NextSibling Emptry Element: S
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTimeline: name: S depth: 5 line: 1
+elapsed_time: 1833671906258 duration: 60160000
+elapsed_time: 1833732066258 duration: 60160000
+elapsed_time: 1833792226258 duration: 60160000
+GIRISH: elapsed_time: 1833852386258 duration: 60160000 r: 2
+NextSibling Emptry Element: S
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTimeline: name: S depth: 5 line: 1
+elapsed_time: 1833852386258 duration: 59733334
+GIRISH: elapsed_time: 1833912119592 duration: 59733334 r: 0
+NextSibling Emptry Element: S
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTimeline: name: S depth: 5 line: 1
+elapsed_time: 1833912119592 duration: 60160000
+elapsed_time: 1833972279592 duration: 60160000
+GIRISH: elapsed_time: 1834032439592 duration: 60160000 r: 1
+NextSibling Emptry Element: S
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTimeline: name: S depth: 5 line: 1
+elapsed_time: 1834032439592 duration: 33280000
+GIRISH: elapsed_time: 1834065719592 duration: 33280000 r: 0
+NextSibling Emptry Element: S
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTimeline: name: SegmentTimeline depth: 4 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTemplate: name: SegmentTemplate depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: Representation depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseRepresentation: name: Representation id: 1538425790529item-10item mime: audio/mp4 codecs: mp4a.40.5 line: 1
+ParseRepresentation Emptry Element: Representation
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: AdaptationSet depth: 2 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParsePeriod: name: AdaptationSet depth: 2 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: SegmentTemplate depth: 3 line: 1
+GIRISH: ParseUrlTemplate: name: media Value: $RepresentationID$_Segment-$Time$.vtt
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTemplate: timescale: 10000000 presentationTimeOffset: 1833565734008 duration: -1 startNumber: 1
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTemplate: name: SegmentTimeline depth: 4 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTimeline: name: S depth: 5 line: 1
+elapsed_time: 1833565740760 duration: 46040000
+GIRISH: elapsed_time: 1833611780760 duration: 46040000 r: 0
+NextSibling Emptry Element: S
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTimeline: name: S depth: 5 line: 1
+elapsed_time: 1833611780760 duration: 60060000
+elapsed_time: 1833671840760 duration: 60060000
+elapsed_time: 1833731900760 duration: 60060000
+elapsed_time: 1833791960760 duration: 60060000
+elapsed_time: 1833852020760 duration: 60060000
+elapsed_time: 1833912080760 duration: 60060000
+elapsed_time: 1833972140760 duration: 60060000
+GIRISH: elapsed_time: 1834032200760 duration: 60060000 r: 6
+NextSibling Emptry Element: S
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTimeline: name: S depth: 5 line: 1
+elapsed_time: 1834032200760 duration: 33370000
+GIRISH: elapsed_time: 1834065570760 duration: 33370000 r: 0
+NextSibling Emptry Element: S
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTimeline: name: SegmentTimeline depth: 4 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTemplate: name: SegmentTemplate depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: Representation depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseRepresentation: name: Representation id: 1538425790529item-11item mime: text/vtt codecs: vtt line: 1
+ParseRepresentation Emptry Element: Representation
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: AdaptationSet depth: 2 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParsePeriod: name: Period depth: 1 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseMediaPresentationDescription: name: Period depth: 1 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParsePeriod: name: AdaptationSet depth: 2 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: ContentProtection depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseContentProtection: name: pro depth: 4 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseContentProtection: name: pro depth: 4 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseContentProtection: name: ContentProtection depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: ContentProtection depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseContentProtection: name: pssh depth: 4 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseContentProtection: name: pssh depth: 4 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseContentProtection: name: ContentProtection depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: ContentProtection depth: 3 line: 1
+ParseContentProtection Emptry Element: ContentProtection
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: SegmentTemplate depth: 3 line: 1
+GIRISH: ParseUrlTemplate: name: media Value: $RepresentationID$_Segment-$Time$.m4v
+GIRISH: ParseUrlTemplate: name: initialization Value: $RepresentationID$_init.m4i
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTemplate: timescale: 10000000 presentationTimeOffset: 1834065566675 duration: -1 startNumber: 1
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTemplate: name: SegmentTimeline depth: 4 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTimeline: name: S depth: 5 line: 1
+elapsed_time: 1834065566675 duration: 26693333
+GIRISH: elapsed_time: 1834092260008 duration: 26693333 r: 0
+NextSibling Emptry Element: S
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTimeline: name: S depth: 5 line: 1
+elapsed_time: 1834092260008 duration: 60060000
+elapsed_time: 1834152320008 duration: 60060000
+elapsed_time: 1834212380008 duration: 60060000
+GIRISH: elapsed_time: 1834272440008 duration: 60060000 r: 2
+NextSibling Emptry Element: S
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTimeline: name: S depth: 5 line: 1
+elapsed_time: 1834272440008 duration: 43376667
+GIRISH: elapsed_time: 1834315816675 duration: 43376667 r: 0
+NextSibling Emptry Element: S
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTimeline: name: SegmentTimeline depth: 4 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTemplate: name: SegmentTemplate depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: Representation depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseRepresentation: name: Representation id: 1538425790529item-1item mime: video/mp4 codecs: avc1.4d401f line: 1
+ParseRepresentation Emptry Element: Representation
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: Representation depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseRepresentation: name: Representation id: 1538425790529item-2item mime: video/mp4 codecs: avc1.4d401f line: 1
+ParseRepresentation Emptry Element: Representation
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: Representation depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseRepresentation: name: Representation id: 1538425790529item-3item mime: video/mp4 codecs: avc1.4d401f line: 1
+ParseRepresentation Emptry Element: Representation
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: Representation depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseRepresentation: name: Representation id: 1538425790529item-4item mime: video/mp4 codecs: avc1.4d401f line: 1
+ParseRepresentation Emptry Element: Representation
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: Representation depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseRepresentation: name: Representation id: 1538425790529item-5item mime: video/mp4 codecs: avc1.4d401f line: 1
+ParseRepresentation Emptry Element: Representation
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: Representation depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseRepresentation: name: Representation id: 1538425790529item-6item mime: video/mp4 codecs: avc1.4d401f line: 1
+ParseRepresentation Emptry Element: Representation
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: Representation depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseRepresentation: name: Representation id: 1538425790529item-7item mime: video/mp4 codecs: avc1.4d4029 line: 1
+ParseRepresentation Emptry Element: Representation
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: AdaptationSet depth: 2 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParsePeriod: name: AdaptationSet depth: 2 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: ContentProtection depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseContentProtection: name: pro depth: 4 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseContentProtection: name: pro depth: 4 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseContentProtection: name: ContentProtection depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: ContentProtection depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseContentProtection: name: pssh depth: 4 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseContentProtection: name: pssh depth: 4 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseContentProtection: name: ContentProtection depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: ContentProtection depth: 3 line: 1
+ParseContentProtection Emptry Element: ContentProtection
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: InbandEventStream depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: SegmentTemplate depth: 3 line: 1
+GIRISH: ParseUrlTemplate: name: media Value: $RepresentationID$_Segment-$Time$.m4a
+GIRISH: ParseUrlTemplate: name: initialization Value: $RepresentationID$_init.m4i
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTemplate: timescale: 10000000 presentationTimeOffset: 1834065566675 duration: -1 startNumber: 1
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTemplate: name: SegmentTimeline depth: 4 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTimeline: name: S depth: 5 line: 1
+elapsed_time: 1834065719592 duration: 26880000
+GIRISH: elapsed_time: 1834092599592 duration: 26880000 r: 0
+NextSibling Emptry Element: S
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTimeline: name: S depth: 5 line: 1
+elapsed_time: 1834092599592 duration: 59733333
+GIRISH: elapsed_time: 1834152332925 duration: 59733333 r: 0
+NextSibling Emptry Element: S
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTimeline: name: S depth: 5 line: 1
+elapsed_time: 1834152332925 duration: 60160000
+elapsed_time: 1834212492925 duration: 60160000
+GIRISH: elapsed_time: 1834272652925 duration: 60160000 r: 1
+NextSibling Emptry Element: S
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTimeline: name: S depth: 5 line: 1
+elapsed_time: 1834272652925 duration: 43520000
+GIRISH: elapsed_time: 1834316172925 duration: 43520000 r: 0
+NextSibling Emptry Element: S
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTimeline: name: SegmentTimeline depth: 4 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTemplate: name: SegmentTemplate depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: Representation depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseRepresentation: name: Representation id: 1538425790529item-8item mime: audio/mp4 codecs: mp4a.40.5 line: 1
+ParseRepresentation Emptry Element: Representation
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: AdaptationSet depth: 2 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParsePeriod: name: AdaptationSet depth: 2 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: ContentProtection depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseContentProtection: name: pro depth: 4 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseContentProtection: name: pro depth: 4 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseContentProtection: name: ContentProtection depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: ContentProtection depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseContentProtection: name: pssh depth: 4 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseContentProtection: name: pssh depth: 4 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseContentProtection: name: ContentProtection depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: ContentProtection depth: 3 line: 1
+ParseContentProtection Emptry Element: ContentProtection
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: InbandEventStream depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: SegmentTemplate depth: 3 line: 1
+GIRISH: ParseUrlTemplate: name: media Value: $RepresentationID$_Segment-$Time$.m4a
+GIRISH: ParseUrlTemplate: name: initialization Value: $RepresentationID$_init.m4i
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTemplate: timescale: 10000000 presentationTimeOffset: 1834065566675 duration: -1 startNumber: 1
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTemplate: name: SegmentTimeline depth: 4 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTimeline: name: S depth: 5 line: 1
+elapsed_time: 1834065719592 duration: 26880000
+GIRISH: elapsed_time: 1834092599592 duration: 26880000 r: 0
+NextSibling Emptry Element: S
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTimeline: name: S depth: 5 line: 1
+elapsed_time: 1834092599592 duration: 59733333
+GIRISH: elapsed_time: 1834152332925 duration: 59733333 r: 0
+NextSibling Emptry Element: S
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTimeline: name: S depth: 5 line: 1
+elapsed_time: 1834152332925 duration: 60160000
+elapsed_time: 1834212492925 duration: 60160000
+GIRISH: elapsed_time: 1834272652925 duration: 60160000 r: 1
+NextSibling Emptry Element: S
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTimeline: name: S depth: 5 line: 1
+elapsed_time: 1834272652925 duration: 43520000
+GIRISH: elapsed_time: 1834316172925 duration: 43520000 r: 0
+NextSibling Emptry Element: S
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTimeline: name: SegmentTimeline depth: 4 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTemplate: name: SegmentTemplate depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: Representation depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseRepresentation: name: Representation id: 1538425790529item-9item mime: audio/mp4 codecs: mp4a.40.5 line: 1
+ParseRepresentation Emptry Element: Representation
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: AdaptationSet depth: 2 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParsePeriod: name: AdaptationSet depth: 2 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: ContentProtection depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseContentProtection: name: pro depth: 4 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseContentProtection: name: pro depth: 4 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseContentProtection: name: ContentProtection depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: ContentProtection depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseContentProtection: name: pssh depth: 4 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseContentProtection: name: pssh depth: 4 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseContentProtection: name: ContentProtection depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: ContentProtection depth: 3 line: 1
+ParseContentProtection Emptry Element: ContentProtection
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: InbandEventStream depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: SegmentTemplate depth: 3 line: 1
+GIRISH: ParseUrlTemplate: name: media Value: $RepresentationID$_Segment-$Time$.m4a
+GIRISH: ParseUrlTemplate: name: initialization Value: $RepresentationID$_init.m4i
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTemplate: timescale: 10000000 presentationTimeOffset: 1834065566675 duration: -1 startNumber: 1
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTemplate: name: SegmentTimeline depth: 4 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTimeline: name: S depth: 5 line: 1
+elapsed_time: 1834065719592 duration: 26880000
+GIRISH: elapsed_time: 1834092599592 duration: 26880000 r: 0
+NextSibling Emptry Element: S
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTimeline: name: S depth: 5 line: 1
+elapsed_time: 1834092599592 duration: 59733333
+GIRISH: elapsed_time: 1834152332925 duration: 59733333 r: 0
+NextSibling Emptry Element: S
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTimeline: name: S depth: 5 line: 1
+elapsed_time: 1834152332925 duration: 60160000
+elapsed_time: 1834212492925 duration: 60160000
+GIRISH: elapsed_time: 1834272652925 duration: 60160000 r: 1
+NextSibling Emptry Element: S
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTimeline: name: S depth: 5 line: 1
+elapsed_time: 1834272652925 duration: 43520000
+GIRISH: elapsed_time: 1834316172925 duration: 43520000 r: 0
+NextSibling Emptry Element: S
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTimeline: name: SegmentTimeline depth: 4 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTemplate: name: SegmentTemplate depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: Representation depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseRepresentation: name: Representation id: 1538425790529item-10item mime: audio/mp4 codecs: mp4a.40.5 line: 1
+ParseRepresentation Emptry Element: Representation
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: AdaptationSet depth: 2 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParsePeriod: name: AdaptationSet depth: 2 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: SegmentTemplate depth: 3 line: 1
+GIRISH: ParseUrlTemplate: name: media Value: $RepresentationID$_Segment-$Time$.vtt
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTemplate: timescale: 10000000 presentationTimeOffset: 1834065566675 duration: -1 startNumber: 1
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTemplate: name: SegmentTimeline depth: 4 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTimeline: name: S depth: 5 line: 1
+elapsed_time: 1834065570760 duration: 26690000
+GIRISH: elapsed_time: 1834092260760 duration: 26690000 r: 0
+NextSibling Emptry Element: S
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTimeline: name: S depth: 5 line: 1
+elapsed_time: 1834092260760 duration: 60060000
+elapsed_time: 1834152320760 duration: 60060000
+elapsed_time: 1834212380760 duration: 60060000
+GIRISH: elapsed_time: 1834272440760 duration: 60060000 r: 2
+NextSibling Emptry Element: S
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTimeline: name: S depth: 5 line: 1
+elapsed_time: 1834272440760 duration: 43380000
+GIRISH: elapsed_time: 1834315820760 duration: 43380000 r: 0
+NextSibling Emptry Element: S
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTimeline: name: SegmentTimeline depth: 4 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTemplate: name: SegmentTemplate depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: Representation depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseRepresentation: name: Representation id: 1538425790529item-11item mime: text/vtt codecs: vtt line: 1
+ParseRepresentation Emptry Element: Representation
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: AdaptationSet depth: 2 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParsePeriod: name: Period depth: 1 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseMediaPresentationDescription: name: Period depth: 1 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParsePeriod: name: AdaptationSet depth: 2 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: ContentProtection depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseContentProtection: name: pro depth: 4 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseContentProtection: name: pro depth: 4 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseContentProtection: name: ContentProtection depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: ContentProtection depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseContentProtection: name: pssh depth: 4 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseContentProtection: name: pssh depth: 4 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseContentProtection: name: ContentProtection depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: ContentProtection depth: 3 line: 1
+ParseContentProtection Emptry Element: ContentProtection
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: SegmentTemplate depth: 3 line: 1
+GIRISH: ParseUrlTemplate: name: media Value: $RepresentationID$_Segment-$Time$.m4v
+GIRISH: ParseUrlTemplate: name: initialization Value: $RepresentationID$_init.m4i
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTemplate: timescale: 10000000 presentationTimeOffset: 1834315816675 duration: -1 startNumber: 1
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTemplate: name: SegmentTimeline depth: 4 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTimeline: name: S depth: 5 line: 1
+elapsed_time: 1834315816675 duration: 16683333
+GIRISH: elapsed_time: 1834332500008 duration: 16683333 r: 0
+NextSibling Emptry Element: S
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTimeline: name: S depth: 5 line: 1
+elapsed_time: 1834332500008 duration: 60060000
+elapsed_time: 1834392560008 duration: 60060000
+elapsed_time: 1834452620008 duration: 60060000
+GIRISH: elapsed_time: 1834512680008 duration: 60060000 r: 2
+NextSibling Emptry Element: S
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTimeline: name: SegmentTimeline depth: 4 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTemplate: name: SegmentTemplate depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: Representation depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseRepresentation: name: Representation id: 1538425790529item-1item mime: video/mp4 codecs: avc1.4d401f line: 1
+ParseRepresentation Emptry Element: Representation
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: Representation depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseRepresentation: name: Representation id: 1538425790529item-2item mime: video/mp4 codecs: avc1.4d401f line: 1
+ParseRepresentation Emptry Element: Representation
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: Representation depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseRepresentation: name: Representation id: 1538425790529item-3item mime: video/mp4 codecs: avc1.4d401f line: 1
+ParseRepresentation Emptry Element: Representation
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: Representation depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseRepresentation: name: Representation id: 1538425790529item-4item mime: video/mp4 codecs: avc1.4d401f line: 1
+ParseRepresentation Emptry Element: Representation
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: Representation depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseRepresentation: name: Representation id: 1538425790529item-5item mime: video/mp4 codecs: avc1.4d401f line: 1
+ParseRepresentation Emptry Element: Representation
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: Representation depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseRepresentation: name: Representation id: 1538425790529item-6item mime: video/mp4 codecs: avc1.4d401f line: 1
+ParseRepresentation Emptry Element: Representation
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: Representation depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseRepresentation: name: Representation id: 1538425790529item-7item mime: video/mp4 codecs: avc1.4d4029 line: 1
+ParseRepresentation Emptry Element: Representation
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: AdaptationSet depth: 2 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParsePeriod: name: AdaptationSet depth: 2 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: ContentProtection depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseContentProtection: name: pro depth: 4 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseContentProtection: name: pro depth: 4 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseContentProtection: name: ContentProtection depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: ContentProtection depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseContentProtection: name: pssh depth: 4 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseContentProtection: name: pssh depth: 4 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseContentProtection: name: ContentProtection depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: ContentProtection depth: 3 line: 1
+ParseContentProtection Emptry Element: ContentProtection
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: InbandEventStream depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: SegmentTemplate depth: 3 line: 1
+GIRISH: ParseUrlTemplate: name: media Value: $RepresentationID$_Segment-$Time$.m4a
+GIRISH: ParseUrlTemplate: name: initialization Value: $RepresentationID$_init.m4i
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTemplate: timescale: 10000000 presentationTimeOffset: 1834315816675 duration: -1 startNumber: 1
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTemplate: name: SegmentTimeline depth: 4 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTimeline: name: S depth: 5 line: 1
+elapsed_time: 1834316172925 duration: 16640000
+GIRISH: elapsed_time: 1834332812925 duration: 16640000 r: 0
+NextSibling Emptry Element: S
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTimeline: name: S depth: 5 line: 1
+elapsed_time: 1834332812925 duration: 60160000
+GIRISH: elapsed_time: 1834392972925 duration: 60160000 r: 0
+NextSibling Emptry Element: S
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTimeline: name: S depth: 5 line: 1
+elapsed_time: 1834392972925 duration: 59733333
+GIRISH: elapsed_time: 1834452706258 duration: 59733333 r: 0
+NextSibling Emptry Element: S
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTimeline: name: S depth: 5 line: 1
+elapsed_time: 1834452706258 duration: 60160000
+GIRISH: elapsed_time: 1834512866258 duration: 60160000 r: 0
+NextSibling Emptry Element: S
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTimeline: name: SegmentTimeline depth: 4 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTemplate: name: SegmentTemplate depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: Representation depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseRepresentation: name: Representation id: 1538425790529item-8item mime: audio/mp4 codecs: mp4a.40.5 line: 1
+ParseRepresentation Emptry Element: Representation
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: AdaptationSet depth: 2 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParsePeriod: name: AdaptationSet depth: 2 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: ContentProtection depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseContentProtection: name: pro depth: 4 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseContentProtection: name: pro depth: 4 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseContentProtection: name: ContentProtection depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: ContentProtection depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseContentProtection: name: pssh depth: 4 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseContentProtection: name: pssh depth: 4 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseContentProtection: name: ContentProtection depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: ContentProtection depth: 3 line: 1
+ParseContentProtection Emptry Element: ContentProtection
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: InbandEventStream depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: SegmentTemplate depth: 3 line: 1
+GIRISH: ParseUrlTemplate: name: media Value: $RepresentationID$_Segment-$Time$.m4a
+GIRISH: ParseUrlTemplate: name: initialization Value: $RepresentationID$_init.m4i
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTemplate: timescale: 10000000 presentationTimeOffset: 1834315816675 duration: -1 startNumber: 1
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTemplate: name: SegmentTimeline depth: 4 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTimeline: name: S depth: 5 line: 1
+elapsed_time: 1834316172925 duration: 16640000
+GIRISH: elapsed_time: 1834332812925 duration: 16640000 r: 0
+NextSibling Emptry Element: S
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTimeline: name: S depth: 5 line: 1
+elapsed_time: 1834332812925 duration: 60160000
+GIRISH: elapsed_time: 1834392972925 duration: 60160000 r: 0
+NextSibling Emptry Element: S
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTimeline: name: S depth: 5 line: 1
+elapsed_time: 1834392972925 duration: 59733333
+GIRISH: elapsed_time: 1834452706258 duration: 59733333 r: 0
+NextSibling Emptry Element: S
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTimeline: name: SegmentTimeline depth: 4 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTemplate: name: SegmentTemplate depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: Representation depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseRepresentation: name: Representation id: 1538425790529item-9item mime: audio/mp4 codecs: mp4a.40.5 line: 1
+ParseRepresentation Emptry Element: Representation
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: AdaptationSet depth: 2 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParsePeriod: name: AdaptationSet depth: 2 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: ContentProtection depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseContentProtection: name: pro depth: 4 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseContentProtection: name: pro depth: 4 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseContentProtection: name: ContentProtection depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: ContentProtection depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseContentProtection: name: pssh depth: 4 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseContentProtection: name: pssh depth: 4 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseContentProtection: name: ContentProtection depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: ContentProtection depth: 3 line: 1
+ParseContentProtection Emptry Element: ContentProtection
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: InbandEventStream depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: SegmentTemplate depth: 3 line: 1
+GIRISH: ParseUrlTemplate: name: media Value: $RepresentationID$_Segment-$Time$.m4a
+GIRISH: ParseUrlTemplate: name: initialization Value: $RepresentationID$_init.m4i
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTemplate: timescale: 10000000 presentationTimeOffset: 1834315816675 duration: -1 startNumber: 1
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTemplate: name: SegmentTimeline depth: 4 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTimeline: name: S depth: 5 line: 1
+elapsed_time: 1834316172925 duration: 16640000
+GIRISH: elapsed_time: 1834332812925 duration: 16640000 r: 0
+NextSibling Emptry Element: S
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTimeline: name: S depth: 5 line: 1
+elapsed_time: 1834332812925 duration: 60160000
+GIRISH: elapsed_time: 1834392972925 duration: 60160000 r: 0
+NextSibling Emptry Element: S
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTimeline: name: S depth: 5 line: 1
+elapsed_time: 1834392972925 duration: 59733333
+GIRISH: elapsed_time: 1834452706258 duration: 59733333 r: 0
+NextSibling Emptry Element: S
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTimeline: name: SegmentTimeline depth: 4 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTemplate: name: SegmentTemplate depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: Representation depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseRepresentation: name: Representation id: 1538425790529item-10item mime: audio/mp4 codecs: mp4a.40.5 line: 1
+ParseRepresentation Emptry Element: Representation
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: AdaptationSet depth: 2 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParsePeriod: name: AdaptationSet depth: 2 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: SegmentTemplate depth: 3 line: 1
+GIRISH: ParseUrlTemplate: name: media Value: $RepresentationID$_Segment-$Time$.vtt
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTemplate: timescale: 10000000 presentationTimeOffset: 1834315816675 duration: -1 startNumber: 1
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTemplate: name: SegmentTimeline depth: 4 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTimeline: name: S depth: 5 line: 1
+elapsed_time: 1834315820760 duration: 16680000
+GIRISH: elapsed_time: 1834332500760 duration: 16680000 r: 0
+NextSibling Emptry Element: S
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTimeline: name: S depth: 5 line: 1
+elapsed_time: 1834332500760 duration: 60060000
+elapsed_time: 1834392560760 duration: 60060000
+GIRISH: elapsed_time: 1834452620760 duration: 60060000 r: 1
+NextSibling Emptry Element: S
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTimeline: name: SegmentTimeline depth: 4 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseSegmentTemplate: name: SegmentTemplate depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: Representation depth: 3 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseRepresentation: name: Representation id: 1538425790529item-11item mime: text/vtt codecs: vtt line: 1
+ParseRepresentation Emptry Element: Representation
+GIRISH: MediaPresentationDescriptionParser::ParseAdaptationSet: name: AdaptationSet depth: 2 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParsePeriod: name: Period depth: 1 line: 1
+GIRISH: MediaPresentationDescriptionParser::ParseMediaPresentationDescription: name: MPD depth: 0 line: 1

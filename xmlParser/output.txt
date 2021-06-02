@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<MPD suggestedPresentationDelay="PT6.0S" timeShiftBufferDepth="PT1M30.0S" minBufferTime="PT6.0S" minimumUpdatePeriod="PT6.0S" publishTime="2018-10-03T22:48:31.894Z" availabilityStartTime="2018-10-01T20:30:37.000Z" type="dynamic" profiles="urn:mpeg:dash:profile:isoff-live:2011" analytics="http://csm-e-cedtuswxaws102j8-22n9dzvxe9rf.tls1.yospace.com/csm/analytics;jsessionid=DBCA6F6D03B894686947FE848D083B5B.csm-e-cedtuswxaws102j8-22n9dzvxe9rf.bln1.yospace.com" xmlns="urn:mpeg:dash:schema:mpd:2011" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:mpeg:dash:schema:mpd:2011 DASH-MPD.xsd" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:scte35="urn:scte:scte35:2014:xml+bin" xmlns:cenc="urn:mpeg:cenc:2013" xmlns:mspr="urn:microsoft:playready">
+<BaseURL>http://dfwlive-sponsored.akamaized.net/Content/DASH.abre/Live/channel(WESPNHD-1964.dfw.720.mobile)/
+</BaseURL>
+NodeName: Location>http://csm-e-cedtuswxaws102j8-22n9dzvxe9rf.tls1.yospace.com/csm/live/129868781/1.mpd;jsessionid=DBCA6F6D03B894686947FE848D083B5B.csm-e-cedtuswxaws102j8-22n9dzvxe9rf.bln1.yospace.com?yo.up=http://dfwlive-sponsored.akamaized.net/Content/DASH.abre/Live/channel(WESPNHD-1964.dfw.720.mobile)/&amp;yo.ac=true&amp;yo.ec=503&amp;yo.d.ut=no&amp;externalId=WESPNHD-1964.dfw.720.mobile.abre.dash
+</Location>
+<Period nodeEndIndex: 1403:"
+endNodeIndex: 2717
+<Location>http://csm-e-cedtuswxaws102j8-22n9dzvxe9rf.tls1.yospace.com/csm/live/129868781/1.mpd;jsessionid=DBCA6F6D03B894686947FE848D083B5B.csm-e-cedtuswxaws102j8-22n9dzvxe9rf.bln1.yospace.com?yo.up=http://dfwlive-sponsored.akamaized.net/Content/DASH.abre/Live/channel(WESPNHD-1964.dfw.720.mobile)/&amp;yo.ac=true&amp;yo.ec=503&amp;yo.d.ut=no&amp;externalId=WESPNHD-1964.dfw.720.mobile.abre.dash
+</Location>
+<Period start="P2DT2H17M26.5990667S" id="6579">
+NodeName: AdaptationSet nodeEndIndex: 1537:"
+endNodeIndex: 2717
+<AdaptationSet mimeType="video/mp4" startWithSAP="1" segmentAlignment="true" subsegmentAlignment="false" subsegmentStartsWithSAP="0">
+NodeName: ContentProtection nodeEndIndex: 1722:"
+endNodeIndex: 2717
+<ContentProtection schemeIdUri="urn:uuid:9a04f079-9840-4286-ab92-e65be0885f95" value="MSPR 2.0" cenc:default_KID="f304ce99-4969-bff6-cd43-a7488817db10" xmlns:cenc="urn:mpeg:cenc:2013">
+NodeName: mspr:pro nodeEndIndex: 2023:"
+endNodeIndex: 2717
+<mspr:pro xmlns="urn:mpeg:dash:schema:mpd:2011" xmlns:cenc="urn:mpeg:cenc:2013" xmlns:mspr="urn:microsoft:playready" xmlns:ns4="urn:mpeg:dash:schema:mpd:2011" xmlns:scte35="urn:scte:scte35:2014:xml+bin" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+NodeName: /mspr:pro>
+</ContentProtection>
+<ContentProtection nodeEndIndex: 2916:"
+endNodeIndex: 3304
+BgIAAAEAAQD8ATwAVwBSAE0ASABFAEEARABFAFIAIAB4AG0AbABuAHMAPQAiAGgAdAB0AHAAOgAvAC8AcwBjAGgAZQBtAGEAcwAuAG0AaQBjAHIAbwBzAG8AZgB0AC4AYwBvAG0ALwBEAFIATQAvADIAMAAwADcALwAwADMALwBQAGwAYQB5AFIAZQBhAGQAeQBIAGUAYQBkAGUAcgAiACAAdgBlAHIAcwBpAG8AbgA9ACIANAAuADAALgAwAC4AMAAiAD4APABEAEEAVABBAD4APABQAFIATwBUAEUAQwBUAEkATgBGAE8APgA8AEsARQBZAEwARQBOAD4AMQA2ADwALwBLAEUAWQBMAEUATgA+ADwAQQBMAEcASQBEAD4AQQBFAFMAQwBUAFIAPAAvAEEATABHAEkARAA+ADwALwBQAFIATwBUAEUAQwBUAEkATgBGAE8APgA8AEsASQBEAD4AbQBjADQARQA4ADIAbABKADkAcgAvAE4AUQA2AGQASQBpAEIAZgBiAEUAQQA9AD0APAAvAEsASQBEAD4APABDAEgARQBDAEsAUwBVAE0APgBYAGUAagBaAHAANgBLADQATQBZAE0APQA8AC8AQwBIAEUAQwBLAFMAVQBNAD4APAAvAEQAQQBUAEEAPgA8AC8AVwBSAE0ASABFAEEARABFAFIAPgA=
+</mspr:pro>
+</ContentProtection>
+<ContentProtection schemeIdUri="urn:uuid:edef8ba9-79d6-4ace-a3c8-27dcd51d21ed" cenc:default_KID="f304ce99-4969-bff6-cd43-a7488817db10" xmlns:cenc="urn:mpeg:cenc:2013">
+NodeName: cenc:pssh nodeEndIndex: 3218:"
+endNodeIndex: 3304
+<cenc:pssh xmlns="urn:mpeg:dash:schema:mpd:2011" xmlns:cenc="urn:mpeg:cenc:2013" xmlns:mspr="urn:microsoft:playready" xmlns:ns4="urn:mpeg:dash:schema:mpd:2011" xmlns:scte35="urn:scte:scte35:2014:xml+bin" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+NodeName: /cenc:pssh>
+</ContentProtection>
+<ContentProtection nodeEndIndex: 3505:/
+Self ending node
+AAAAPnBzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAAB4IARIQ8wTOmUlpv/bNQ6dIiBfbECIEMTk2NCoCU0Q=
+</cenc:pssh>
+</ContentProtection>
+<ContentProtection schemeIdUri="urn:mpeg:dash:mp4protection:2011" value="cenc" cenc:default_KID="f304ce99-4969-bff6-cd43-a7488817db10" xmlns:cenc="urn:mpeg:cenc:2013"/>
+NodeName: SegmentTemplate nodeEndIndex: 3674:"
+endNodeIndex: 3772
+<SegmentTemplate presentationTimeOffset="1810465990675" timescale="10000000" media="$RepresentationID$_Segment-$Time$.m4v" initialization="$RepresentationID$_init.m4i">
+NodeName: SegmentTimeline>
+<S nodeEndIndex: 3734:/
+Self ending node
+<SegmentTimeline>
+<S r="2" d="60060000" t="1810748940008"/>
