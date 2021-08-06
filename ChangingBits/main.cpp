@@ -60,13 +60,13 @@ void sum(const string& a, const string& b, string& c) {
     if (a[index] == '0' && b[index] == '0') {
       c[index + 1] = carry;
       carry = '0';
-    } else if ((a[index] == '0' && b[index] == '1') || (a[index] == '1' && b[index] == '0')) {
-      if (carry == '0') {
-        c[index + 1] = '1';
-      }
     } else if (a[index] == '1' && b[index] == '1') {
       c[index + 1] = carry;
       carry = '1';
+    } else { //if ((a[index] == '0' && b[index] == '1') || (a[index] == '1' && b[index] == '0')) {
+      if (carry == '0') {
+        c[index + 1] = '1';
+      }
     }
   }
 

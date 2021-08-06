@@ -39,7 +39,7 @@ public:
     // Check if its present in the cache first.
     if (mCacheMap.find(key) == mCacheMap.end()) {
       // Check if the Cache is full already, in which case we need to evict the LRU (back) item.
-      if (mQueue.size() == capasity) {
+      if (mQueue.size() == mCapacity) {
         auto lru = mQueue.back();
         mCacheMap.erase(lru.first);
         mQueue.pop_back();
@@ -57,7 +57,9 @@ public:
   }
 
   // Get current size of the LRUCache
-  size_t LRUCache::getSize() const;
+  size_t LRUCache::getSize() const {
+    return mQueue.size();
+  }
 
 private:
   size_t mCapacity;
