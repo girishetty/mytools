@@ -1,32 +1,33 @@
 /*
  * https://www.geeksforgeeks.org/print-path-between-any-two-nodes-in-a-binary-tree/
  *
- * Given a Binary Tree of distinct nodes and a pair of nodes. The task is to find and print the path between the two given nodes in the binary tree.
+ * Given a Binary Search Tree of distinct nodes and a pair of nodes,
+ * The task is to find and print the path between the two given nodes in the binary tree.
  */
 
-#include <vector>
-#include <queue>
-#include <stack>
-#include <iostream>
-#include "BST.h"
+#include "BinaryTree.h"
 
-bool pathFromNodeToValue(TreeNode* node, int value, std::vector<int>& path) {
+bool pathFromBSTNodeToValue(const TreeNode* node, int value, std::vector<int>& path) {
   if (node == nullptr) {
+    // No path
     return false;
   }
   path.push_back(node->val);
   if (value == node->val) {
+    // Found the node with the value
     return true;
   }
 
   if (value < node->val) {
-    return pathFromNodeToValue(node->left, value, path);
+    // Should be in left sub-tree
+    return pathFromBSTNodeToValue(node->left, value, path);
   }
   
-  return pathFromNodeToValue(node->right, value, path);
+  // Should be in right sub-tree
+  return pathFromBSTNodeToValue(node->right, value, path);
 }
 
-bool pathBetweenNodes(TreeNode* root, int begin, int end, std::vector<int>& path) {
+bool pathBetweenBSTNodes(const TreeNode* root, int begin, int end, std::vector<int>& path) {
   path.clear();
   if (root == nullptr) {
     // No path!
@@ -36,8 +37,8 @@ bool pathBetweenNodes(TreeNode* root, int begin, int end, std::vector<int>& path
   // Find the Path from root to begin and root to end
   std::vector<int> pathToBegin;
   std::vector<int> pathToEnd;
-  if (pathFromNodeToValue(root, begin, pathToBegin) &&
-      pathFromNodeToValue(root, end, pathToEnd)) {
+  if (pathFromBSTNodeToValue(root, begin, pathToBegin) &&
+      pathFromBSTNodeToValue(root, end, pathToEnd)) {
     // There exists a path, which can be:
     // 1. In left sub-tree ==> we need to look for the intersection
     // 2. In right sub-tree ==> we need to look for the intersection

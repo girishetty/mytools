@@ -12,9 +12,9 @@
 
 #include <limits>
 #include <iostream>
-#include "BST.h"
+#include "BinaryTree.h"
 
-int findMaxPathSum(TreeNode* node, int& sum) {
+static int findMaxPathSum(const TreeNode* node, int& sum) {
   if (node == nullptr) {
     return 0;
   }
@@ -33,11 +33,10 @@ int findMaxPathSum(TreeNode* node, int& sum) {
   return maxNode;
 }
 
-int findMaxPathSum(TreeNode* root) {
+int findMaxPathSumInBinaryTree(const TreeNode* root) {
   int sum = std::numeric_limits<int>::min();
 
   findMaxPathSum(root, sum);
 
   return sum;
 }
-

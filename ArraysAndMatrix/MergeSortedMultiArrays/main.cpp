@@ -1,3 +1,7 @@
+/*
+ * Merge sort multiple arrays using template
+ *
+ */
 #include <iostream>
 #include <vector>
 

@@ -14,17 +14,90 @@
 
 #include <vector>
 #include <string>
-#include <iostream>
 #include <iomanip>
+#include <iostream>
+#include <algorithm>
 
 using namespace std;
 
-void printMatrix(const vector<vector<int>>& matrix) {
+void printMatrix(const char* what, const vector<vector<int>>& matrix) {
+  std::cout << what << " is:" << std::endl;
   for (const auto& row : matrix) {
     for (auto item : row) {
       cout << setw(4) << item << "    ";
     }
     cout << endl;
+  }
+}
+
+void rotateAntiClockwiseBy90Degree(vector<vector<int>>& matrix) {
+  printMatrix("Original Matrix", matrix);
+
+  int matrixSize = matrix.size();
+  // The first cycle is formed by its first row, last column, last row, and first column.
+  // Then, there will be inner cycles - up to matrixSize / 2
+  int cycleCount = matrixSize / 2;
+
+  for (int i = 0; i < cycleCount; i++) {
+    for (int j = i; j < matrixSize - (i + 1); j++) {
+      // swap elements by 90 degree in anticlockwise direction
+      auto temp = matrix[i][j];
+      // Right Column shifts up as Top row
+      matrix[i][j] = matrix[j][matrixSize - 1 - i];
+      // Bottom row moves up as Right column
+      matrix[j][matrixSize - 1 - i] =  matrix[matrixSize - 1 - i][matrixSize - 1 - j];
+      // Left Column shifts down as Bottow row
+      matrix[matrixSize - 1 - i][matrixSize - 1 - j] = matrix[matrixSize - 1 - j][i];
+      // Top row moves down as Left column
+      matrix[matrixSize - 1 - j][i] = temp;
+    }
+  }
+
+  printMatrix("After 90degree Clockwise Rotation", matrix);
+}
+
+void rotateClockwiseBy90Degree(vector<vector<int>>& matrix) {
+  printMatrix("Original Matrix", matrix);
+
+  int matrixSize = matrix.size();
+  // The first cycle is formed by its first row, last column, last row, and first column.
+  // Then, there will be inner cycles - up to matrixSize / 2
+  int cycleCount = matrixSize / 2;
+
+  for (int i = 0; i < cycleCount; i++) {
+    for (int j = i; j < matrixSize - (i + 1); j++) {
+      // swap elements by 90 degree in clockwise direction
+      auto temp = matrix[i][j];
+      // Left Column shifts up as Top row
+      matrix[i][j] = matrix[matrixSize - 1 - j][i];
+      // Bottom row moves up as Left column
+      matrix[matrixSize - 1 - j][i] =  matrix[matrixSize - 1 - i][matrixSize - 1 - j];
+      // Right Column shifts down as Bottow row
+      matrix[matrixSize - 1 - i][matrixSize - 1 - j] = matrix[j][matrixSize - 1 - i];
+      // Top row moves down as Right column
+      matrix[j][matrixSize - 1 - i] = temp;
+    }
+  }
+
+  printMatrix("After 90degree Clockwise Rotation", matrix);
+}
+
+void testRotateClockwiseBy90Degree() {
+  std::vector<std::vector<int>> matrix { {1,  2,  3,  4,  5 },
+                                         {6,  7,  8,  9,  10},
+                                         {11, 12, 13, 14, 15},
+                                         {16, 17, 18, 19, 20},
+                                         {21, 22, 23, 24, 25}};
+  auto rightRotate = matrix;
+  // rotate clockwise by 90 degree
+  rotateClockwiseBy90Degree(rightRotate);
+  // rotate anticlockwise by 90 degree
+  rotateAntiClockwiseBy90Degree(rightRotate);
+  // Now rightRotate == matrix
+  if (rightRotate != matrix) {
+    std::cout << "Failed!!" << std::endl;
+  } else {
+    std::cout << "Success" << std::endl;
   }
 }
 
@@ -40,7 +113,6 @@ void rotateAntiClockwise(vector<vector<int>>& matrix) {
     rowIndex = row;
     colIndex = row;
     int saved1 = matrix[rowIndex][colIndex];
-    cout << "[" << rowIndex << ":" << colIndex << ":" << saved1 << "]" << endl;
     for (; colIndex < colCount - row - 1; colIndex++) {
       matrix[rowIndex][colIndex] = matrix[rowIndex][colIndex + 1];
     }
@@ -49,7 +121,6 @@ void rotateAntiClockwise(vector<vector<int>>& matrix) {
     colIndex = row;
     rowIndex = rowCount - row - 1;
     int saved2 = matrix[rowIndex][colIndex];
-    cout << "[" << rowIndex << ":" << colIndex << ":" << saved2 << "]" << endl;
     for (; rowIndex > row + 1; rowIndex--) {
       matrix[rowIndex][colIndex] = matrix[rowIndex - 1][colIndex];
     }
@@ -59,7 +130,6 @@ void rotateAntiClockwise(vector<vector<int>>& matrix) {
     colIndex = colCount - row - 1;
     rowIndex = rowCount - row - 1;
     saved1 = matrix[rowIndex][colIndex];
-    cout << "[" << rowIndex << ":" << colIndex << ":" << saved1 << "]" << endl;
     for (; colIndex > row + 1; colIndex--) {
       matrix[rowIndex][colIndex] = matrix[rowIndex][colIndex - 1];
     }
@@ -78,17 +148,18 @@ void rotateAntiClockwise(vector<vector<int>>& matrix) {
 void matrixRotation(vector<vector<int>>& matrix, int r) {
 
   cout << "=================================\n";
-  printMatrix(matrix);
+  printMatrix("Original Matrix", matrix);
   cout << "=================================\n";
 
   cout << "rotationCount: " << r << endl;
+  r = r % (2 * matrix.size() + 2 * matrix[0].size());
   for (int rotationCount = 0; rotationCount < r; rotationCount++) {
     rotateAntiClockwise(matrix);
-    printMatrix(matrix);
+    printMatrix("After Anticlokwise Rotation by 1", matrix);
     cout << "=================================\n";
   }
 
-  printMatrix(matrix);
+  printMatrix("After Anticlokwise Rotation", matrix);
 }
 
 string ltrim(const string &);
@@ -96,6 +167,7 @@ string rtrim(const string &);
 vector<string> split(const string &);
 
 int main() {
+  testRotateClockwiseBy90Degree();
   string mnr_temp;
   getline(cin, mnr_temp);
 

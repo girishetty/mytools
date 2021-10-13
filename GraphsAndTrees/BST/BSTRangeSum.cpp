@@ -8,69 +8,63 @@
  *  Output: 32
  *  Explanation: Nodes 7, 10, and 15 are in the range [7, 15]. 7 + 10 + 15 = 32.
  *
- * Example#2:
+ * Example#1:
  *  Input: root = [10,5,15,3,7,13,18,1,null,6], low = 6, high = 10
  *  Output: 23
  *  Explanation: Nodes 6, 7, and 10 are in the range [6, 10]. 6 + 7 + 10 = 23.
  */
 
-#include <vector>
-#include <queue>
-#include <stack>
-#include <iostream>
-#include "BST.h"
+#include "BinaryTree.h"
 
-int nodeToRootSum(TreeNode* node, int value) {
+static int nodeToRootSum(const TreeNode* node, int value) {
   if (node == nullptr) {
     return 0;
   }
   if (value <= node->val) {
-#ifdef _DEBUG
-    std::cout << node->val << "+";
-#endif
     return node->val + nodeToRootSum(node->left, value) + nodeToRootSum(node->right, value);
   }
   
   return nodeToRootSum(node->right, value);
 }
 
-int rootToNodeSum(TreeNode* node, int value) {
+static int rootToNodeSum(const TreeNode* node, int value) {
   if (node == nullptr) {
     return 0;
   }
   if (value >= node->val) {
-#ifdef _DEBUG
-    std::cout << node->val << "+";
-#endif
     return node->val + rootToNodeSum(node->left, value) + rootToNodeSum(node->right, value);
   }
   return rootToNodeSum(node->left, value);
 }
 
-int rangeSumBST(TreeNode* root, int low, int high) {
+int rangeSumBST(const TreeNode* root, int low, int high) {
+  // Invalid root
   if (root == nullptr) {
     return 0;
   }
+  // Range is at the root
   if (low == root->val && high == root->val) {
     return low;
   }
+
   if (low < root->val && high < root->val) {
+    // both low-high are under left sub-tree
     return rangeSumBST(root->left, low, high);
   }
   if (low > root->val && high > root->val) {
+    // both low-high are under right sub-tree
     return rangeSumBST(root->right, low, high);
   }
   
+  // low is in left sub-tree and high is at right sub-tree
   int sum = 0;
   bool rootAdded = false;
   if (low <= root->val) {
     sum = root->val + nodeToRootSum(root->left, low);
-    std::cout << std::endl;
     rootAdded = true;
   }
   if (high >= root->val) {
     sum += rootToNodeSum(root->right, high);
-    std::cout << std::endl;
     if (!rootAdded) {
       sum += root->val;
     }

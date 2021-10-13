@@ -1,14 +1,48 @@
-
-#include <iostream>
+/*
+ * Rotate an array by a distnace towards left or right
+ *
+ * Example#1:
+ * Input Array: {1,2,3,4,5,6,7}
+ * Direction: rotate right by 3
+ * Output: [5 6 7 1 2 3 4 ]
+ *
+ * Example#2:
+ * Input Array: {1,2,3,4,5,6,7}
+ * Direction: rotate left by 3
+ * Output: {4 5 6 7 1 2 3 }
+ *
+ */
 #include <vector>
 #include <string>
+#include <iostream>
+#include <algorithm>
 
 using namespace std;
 
-vector<string> split_string(string);
+void display(const char* what, const vector<int> nums) {
+  std::cout << what << " is: [";
+  for (auto item : nums) {
+    std::cout << item << " ";
+  }
+  std::cout << "]" << std::endl;
+}
 
-// Complete the rotLeft function below.
-vector<int> rotLeft(const vector<int>& a, int d) {
+void rotateRight(vector<int> nums, int k) {
+  int size = nums.size();
+  k = k % size;
+
+  display("Orig", nums);
+  if (k > 0) {
+    auto moveBegin = nums.begin() + (size - k);
+    nums.insert(nums.begin(), moveBegin, nums.end());
+    nums.resize(size);
+  }
+  display("Right Rotated", nums);
+}
+
+// Complete the rotateLeft function below.
+vector<int> rotateLeft(const vector<int>& a, int d) {
+  display("Orig", a);
   size_t arraySize = a.size();
   vector<int> leftRotated(arraySize);
   int beginIndex = (arraySize + d) % arraySize;
@@ -18,71 +52,17 @@ vector<int> rotLeft(const vector<int>& a, int d) {
     std::copy(a.begin(), a.begin() + beginIndex, leftRotated.begin() + toCopySize);
   }
 
+  display("Left Rotated", leftRotated);
   return leftRotated;
 }
 
 int main() {
-  string nd_temp;
-  getline(cin, nd_temp);
-
-  vector<string> nd = split_string(nd_temp);
-
-  int n = stoi(nd[0]);
-
-  int d = stoi(nd[1]);
-
-  string a_temp_temp;
-  getline(cin, a_temp_temp);
-
-  vector<string> a_temp = split_string(a_temp_temp);
-
-  vector<int> a(n);
-
-  for (int i = 0; i < n; i++) {
-    int a_item = stoi(a_temp[i]);
-
-    a[i] = a_item;
-  }
-
-  vector<int> result = rotLeft(a, d);
-
-  for (int i = 0; i < result.size(); i++) {
-    cout << result[i];
-
-    if (i != result.size() - 1) {
-      cout << " ";
-    }
-  }
+  rotateRight({1,2,3}, 1);
+  rotateRight({1,2,3}, 2);
+  rotateRight({1,2,3}, 3);
+  rotateRight({1,2,3}, 4);
+  rotateRight({1,2,3,4,5,6,7}, 3);
+  rotateLeft({1,2,3,4,5,6,7}, 3);
 
   return 0;
 }
-
-vector<string> split_string(string input_string) {
-  string::iterator new_end = unique(input_string.begin(), input_string.end(), [] (const char &x, const char &y) {
-    return x == y and x == ' ';
-  });
-
-  input_string.erase(new_end, input_string.end());
-
-  while (input_string[input_string.length() - 1] == ' ') {
-    input_string.pop_back();
-  }
-
-  vector<string> splits;
-  char delimiter = ' ';
-
-  size_t i = 0;
-  size_t pos = input_string.find(delimiter);
-
-  while (pos != string::npos) {
-    splits.push_back(input_string.substr(i, pos - i));
-
-    i = pos + 1;
-    pos = input_string.find(delimiter, i);
-  }
-
-  splits.push_back(input_string.substr(i, min(pos, input_string.length()) - i + 1));
-
-  return splits;
-}
-
