@@ -1,4 +1,6 @@
 #include <iostream>
+#include <limits.h>
+
 using namespace std;
 
 #include "BSTNode.h"

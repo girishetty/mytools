@@ -54,6 +54,11 @@ public:
   // A BFS based function to check whether d is reachable from s.
   bool isReachable(int s, int d) const;
 
+  // A BFS based function to find the shortest distance between s and d.
+  // distance is the number of paths adding up from the path s to d.
+  // Returns -1 if no path is found
+  int shortestDistance(int s, int d) const;
+
 private:
   void DFSUtil(int v, std::vector<bool>& visited, bool print = true) const;
   void TopologicalOrderingUtil(int v, std::vector<bool>& visited, std::vector<int>& order) const;

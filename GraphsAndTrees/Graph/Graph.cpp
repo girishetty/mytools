@@ -11,6 +11,61 @@ using std::list;
 using std::setw;
 using std::vector;
 
+/*
+ * Shortest distance between 2 nodes in a graph (distance by number of nodes in between).
+ * If no such path, it returns -1
+ *
+ */
+int Graph::shortestDistance(int s, int d) const {
+  // Mark all the vertices as not visited
+  vector<bool> visited(mVertex, false);
+
+  struct Pair {
+    int vertex;
+    int distance;
+    Pair(int v, int d) : vertex(v), distance(d) {}
+    Pair(const Pair& p) : vertex(p.vertex), distance(p.distance) {}
+  };
+  // Create a queue for BFS
+  list<Pair> queue;
+
+  // Mark the current node as visited and enqueue it.
+  visited[s] = true;
+  queue.push_back(Pair(s, 0));
+
+  // it will be used to get all adjacent vertices of a vertex.
+  vector<AdjListNode>::const_iterator i;
+
+  while (!queue.empty()) {
+    // Dequeue a vertex from queue.
+    Pair p = queue.front();
+    queue.pop_front();
+
+    if (p.vertex == d) {
+      return p.distance;
+    }
+    // Get all adjacent vertices of the dequeued vertex s.
+    // If a adjacent has not been visited, then mark it visited and enqueue it.
+    for (i = mAdjList[p.vertex].begin(); i != mAdjList[p.vertex].end(); ++i) {
+      // If this adjacent node has not been visited yet, add it to the queue
+      auto vertex = i->getVertex();
+      if (!visited[vertex]) { 
+        visited[vertex] = true;
+        queue.push_back(Pair(vertex, p.distance+1));
+      }
+    } 
+  }
+
+  // If BFS is complete without visiting d 
+  return -1; 
+}
+
+/*
+ * Given 2 nodes of a Graph, checks if the 2nd one is reachable from the first one.
+ * This one is almost similar to shortestDistance algorithm.
+ * If no such path, it returns false.
+ *
+ */
 bool Graph::isReachable(int s, int d) const {
   // Base case
   if (s == d) {
@@ -56,6 +111,11 @@ bool Graph::isReachable(int s, int d) const {
   return false; 
 }
 
+/*
+ * Breadth first traversal of a Graph.
+ * Here, we visit all the neighboring nodes of a node, before taking further away nodes
+ *
+ */
 void Graph::BFS(int beginVertex) {
   // Mark all the vertices as not visited.
   vector<bool> visited(mVertex, false);

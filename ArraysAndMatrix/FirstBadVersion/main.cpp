@@ -26,6 +26,7 @@
 int gBadVersion = 0;
 
 void setBadVersion(int max) {
+  srand(time(0));
   int rand_num = std::rand();
   gBadVersion = rand_num % (max + 1);
 }

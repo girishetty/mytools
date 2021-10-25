@@ -132,6 +132,47 @@ bool isPalindrome_v1(unsigned int n) {
   return n == rev;
 }
  
+/*
+ * https://leetcode.com/explore/interview/card/top-interview-questions-easy/99/others/565/
+ *
+ * Write a function that takes an unsigned integer and returns the number of '1' bits it has
+ * (also known as the Hamming weight).
+ */
+
+int hammingWeight(uint32_t n) {
+  // No of bits for each nibble from 0 to 15
+  static uint8_t nibble_bits_count[16] = {
+         0, 1, 1, 2, 1, 2, 2, 3, 1, 2, 2, 3, 2, 3, 3, 4};
+  int count = 0;
+  do {
+    auto nibble = n & 0xF;
+    count += nibble_bits_count[nibble];
+    n = n >> 4;
+  } while (n != 0);
+  
+  return count;
+}
+
+/*
+ * https://leetcode.com/explore/interview/card/top-interview-questions-easy/99/others/648/
+ *
+ * Reverse bits of a given 32 bits unsigned integer.
+ */
+uint32_t reverseBits(uint32_t n) {
+  size_t l = sizeof(uint32_t) << 3;
+  uint32_t reversed = 0;
+
+  for (size_t r = 1; r <= l; r++) {
+    bool rSet = isKthBitSet(n, r);
+    reversed = reversed << 1;
+    if (rSet) {
+      reversed = reversed | 0x1;
+    }
+  }
+
+  return reversed;
+}
+
 int main() {
   int n = 285212808;
   std::cout << "Enter a Number: ";

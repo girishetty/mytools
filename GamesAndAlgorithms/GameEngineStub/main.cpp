@@ -1,8 +1,7 @@
 /**
  * This code snippet uses raw pointers in its APIs.
  *
- * Retrofit this code to use shared_ptr smart pointer in all of
- * its APIs.
+ * Retrofit this code to use shared_ptr smart pointer in all of its APIs.
  *
  */
 
@@ -13,7 +12,7 @@ class Game;
 
 class GameEngine {
 public:
-  void recalculateState (std::shared_ptr<Game> game);
+  void recalculateState(std::shared_ptr<Game> game);
 };
 
 class Game : public std::enable_shared_from_this<Game> {
@@ -32,7 +31,7 @@ public:
   }
 };
 
-void GameEngine::recalculateState (std::shared_ptr<Game> game) {
+void GameEngine::recalculateState(std::shared_ptr<Game> game) {
   auto pos = game->position();
   /* do something */
 }

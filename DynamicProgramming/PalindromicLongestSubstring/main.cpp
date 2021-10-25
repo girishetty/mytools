@@ -76,13 +76,10 @@ string longestPalindromeSubstring(const string& input) {
         // See if the substring from input[begin+1..end-1] is also a palindrome.
         size_t insideBegin = begin + 1;
         size_t insideEnd = end - 1;
-        if (insideBegin <= insideEnd) {
-          if (M[insideBegin][insideEnd] == 0) {
-            // inside substring isn't a palindrome. So this is also not a palindrome.
-            M[begin][end] = 0;
-          }
-        }
-        if (M[begin][end] > longestSubstr.len) {
+        if (insideBegin <= insideEnd && M[insideBegin][insideEnd] == 0) {
+          // inside substring isn't a palindrome. So this is also not a palindrome.
+          M[begin][end] = 0;
+        } else if (M[begin][end] > longestSubstr.len) {
           longestSubstr.len = length;
           longestSubstr.beginIndex = begin;
         }

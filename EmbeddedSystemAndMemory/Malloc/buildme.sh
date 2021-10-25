@@ -1,2 +1,2 @@
 rm -f a.out
-gcc main.cpp -std=c++14 -lstdc++
+gcc main.cpp malloc.cpp -std=c++14 -lstdc++

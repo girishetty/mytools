@@ -1,5 +1,9 @@
 #include <iostream>
+#include <limits.h>
+#include <string.h>
+
 using namespace std;
+
 #include "BST.h"
 #include "BinaryMinHeap.h"
 #include "BinaryMaxHeap.h"

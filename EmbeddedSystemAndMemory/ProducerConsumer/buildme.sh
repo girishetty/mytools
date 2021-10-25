@@ -1,2 +1,2 @@
 rm -f a.out
-gcc main.cpp -std=c++14 -lstdc++
+gcc producer_consumer.cpp main.cpp -std=c++14 -lstdc++ -lpthread

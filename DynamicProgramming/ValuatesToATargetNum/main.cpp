@@ -38,6 +38,7 @@ int devide(const int& lhs, const int& rhs) {
   return 0;
 }
 
+// Reference implementation: https://codinghelmet.com/exercises/expression-from-numbers
 // TODO: Complete the implementation
 int doOperation(int lhs, int rhsIndex, char* operation, int op_index) {
   if (nums.size() == 1) {

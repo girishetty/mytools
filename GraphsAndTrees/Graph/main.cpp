@@ -28,5 +28,10 @@ int main() {
 
   cout << "There is a Path between (0, 3): " << g.isReachable(0, 3) << endl;
   cout << "There is a Path between (3, 0): " << g.isReachable(3, 0) << endl;
+
+  cout << "Distance between (0, 1): " << g.shortestDistance(0, 1) << endl;
+  cout << "Distance between (0, 2): " << g.shortestDistance(0, 2) << endl;
+  cout << "Distance between (0, 3): " << g.shortestDistance(0, 3) << endl;
+  cout << "Distance between (3, 0): " << g.shortestDistance(3, 0) << endl;
   return 0;
 }

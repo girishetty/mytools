@@ -56,7 +56,8 @@ int findKthLargest(vector<int>& arr, size_t K, partition_function partition) {
  * to left of pivot and all greater elements to right of pivot.
  */
 size_t partition_middle_pivot(vector<int>& arr, size_t low, size_t high) {
-  int pivot = arr[(low + high) >> 1];
+  int pi = low + ((high - low) / 2);
+  int pivot = arr[pi];
   int i = low;
   int j = high;
 
@@ -76,7 +77,9 @@ size_t partition_middle_pivot(vector<int>& arr, size_t low, size_t high) {
   }
 
   // Now swap pivot with the arr[j]. Thats where the parition happens now.
-  swap(pivot, arr[j]);  
+  if (pi < j) {
+    swap(arr[pi], arr[j]);
+  }
 
   return j;
 }
@@ -88,7 +91,8 @@ size_t partition_middle_pivot(vector<int>& arr, size_t low, size_t high) {
  */
 size_t partition_high_pivot(vector<int>& arr, size_t low, size_t high) {
   int pivot = arr[high]; // pivot
-  size_t i = low; // Index of smaller element
+  // i will hold the index of element that is >= pivot
+  size_t i = low;
 
   for (size_t j = low; j < high; j++) {
     // If current element is smaller than the pivot
@@ -96,10 +100,13 @@ size_t partition_high_pivot(vector<int>& arr, size_t low, size_t high) {
       if (i != j) {
         swap(arr[i], arr[j]);
       }
-      i++; // increment index of smaller element
+      // Since this element is smaller than pivot, lets hope that next one is >=
+      i++;
     }
   }
   if (i < high) {
+    // Since i points to an index where we have the first element that is >= pivot
+    // we can swap them to create a parition <smaller elements> pivot <equal or greater elements>
     swap(arr[i], arr[high]);
   }
 
@@ -127,37 +134,41 @@ void quickSort(vector<int>& arr, size_t low, size_t high, partition_function par
   }
 }
 
-void testFindKthLargestNumber(std::vector<int> arr, size_t K, bool middle_pivot) {
-  printArray("Orignal Array:", arr);
-  int kth_largest = -1;
-  if (middle_pivot) {
-    kth_largest = findKthLargest(arr, K, partition_middle_pivot);
+void testQuickSort(const std::vector<int>& arr, size_t K) {
+  std::vector<int> toSort1 = arr;
+  printArray("Orignal Array", arr);
+  quickSort(toSort1, 0, arr.size() - 1, partition_middle_pivot);
+  printArray("Sorted Array with Middle Pivot", toSort1);
+  std::vector<int> toSort2 = arr;
+  quickSort(toSort2, 0, arr.size() - 1, partition_high_pivot);
+  printArray("Sorted Array with High Pivot  ", toSort2);
+  if (toSort2 != toSort1) {
+    std::cout << "Error!! Mismatch in sorting order from 2 different approach!" << std::endl;
   } else {
-    kth_largest = findKthLargest(arr, K, partition_high_pivot);
+    std::cout << "Both Pivot worked successfully" << std::endl;
   }
-  std::cout << "K[" << K <<"]th Largest Number is: " << kth_largest << std::endl;
-}
-
-void testQuickSort(std::vector<int> arr, bool middle_pivot) {
-  printArray("Orignal Array:", arr);
-  if (middle_pivot) {
-    quickSort(arr, 0, arr.size() - 1, partition_middle_pivot);
+  toSort1 = arr;
+  int kth_largest = findKthLargest(toSort1, K, partition_middle_pivot);
+  toSort2 = arr;
+  if (kth_largest == findKthLargest(toSort2, K, partition_high_pivot)) {
+    std::cout << "K[" << K <<"]th Largest Number is: " << kth_largest << std::endl;
   } else {
-    quickSort(arr, 0, arr.size() - 1, partition_high_pivot);
+    std::cout << "Error!! Mismatch in K[" << K <<"]th Largest Number from 2 different approach!" << std::endl;
   }
-  printArray("Sorted  Array:", arr);
+  printArray("Partially Sorted Array", toSort2);
+  std::cout << "===================================================================================" << std::endl;
 }
 
 int main() {
   vector<int> arr{10, 7, 8, 9, 1, 5, 3, 0, 12, 0, 4, 2, 1};
-  testQuickSort(arr, false);
-  testQuickSort(arr, true);
-  testFindKthLargestNumber(arr, 3, false);
-  testFindKthLargestNumber(arr, 3, true);
+  testQuickSort(arr, 3);
   vector<int> arr_1{10, 7, 0, 8, 0, 9, 1, 5};
-  testQuickSort(arr_1, false);
-  testQuickSort(arr_1, true);
-  testFindKthLargestNumber(arr_1, 3, false);
-  testFindKthLargestNumber(arr_1, 3, true);
+  testQuickSort(arr_1, 3);
+  vector<int> arr_2 {3,2,1,5,6,4};
+  testQuickSort(arr_2, 3);
+  vector<int> arr_3 {2,1};
+  testQuickSort(arr_3, 2);
+  vector<int> arr_4 {1,2,1,3,5,6,4};
+  testQuickSort(arr_4, 1);
   return 0;
 }

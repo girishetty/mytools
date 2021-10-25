@@ -1,45 +1,20 @@
-#include <map>
 #include <iostream>
-
-using namespace std;
-
-struct AlligedAddress {
-  void* baseAddress_ = nullptr;
-  void* alignedAddress = nullptr;
-};
-
-std::mutex gLock;
-std::map<void*, AlligedAddress> gAlignedAllocList;
-
-void* alignedMalloc(size_t size, size_t align) {
-  AlligedAddress ptr;
-  ptr.baseAddress_ = (void*) malloc (size + align);
-  ptr.alignedAddress = ptr.baseAddress_;
-  
-  size_t offset = align - ((size_t)ptr.baseAddress_ % align);
-  ptr.alignedAddress = ((uint8_t*) ptr.alignedAddress + offset);
-  
-  {
-    std::lock_guard<std::mutex> lock(gLock);
-    gAlignedAllocList[ptr.alignedAddress] = ptr;
-  }
-  
-  return ptr.alignedAddress;
-}
-
-void alignedFree(void* ptr) {
-  if (ptr == nullptr) {
-    return;
-  }
-
-  std::lock_guard<std::mutex> lock(gLock);
-  auto it = gAlignedAllocList.find(ptr);
-  if (it != gAlignedAllocList.end()) {
-    free(it->second.baseAddress_);
-    gAlignedAllocList.erase(it);
-  }
-}
+#include "AlignedAlloc.h"
 
 int main() {
+  void* ptr1 = alignedMalloc(10, 4);
+  void* ptr2 = alignedMalloc(20, 2);
+  void* ptr3 = alignedMalloc(10, 8);
+  void* ptr4 = alignedMalloc(100, 16);
+
+  std::cout << "Ptr1: " << std::hex << ptr1 << std::endl;
+  std::cout << "Ptr2: " << std::hex << ptr2 << std::endl;
+  std::cout << "Ptr3: " << std::hex << ptr3 << std::endl;
+  std::cout << "Ptr4: " << std::hex << ptr4 << std::endl;
+
+  alignedFree(ptr1);
+  alignedFree(ptr2);
+  alignedFree(ptr3);
+  alignedFree(ptr4);
   return 0;
 }

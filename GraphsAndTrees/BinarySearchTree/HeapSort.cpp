@@ -1,4 +1,6 @@
+#include <iostream>
 #include "HeapSort.h"
+#include "BinaryHeap.h"
 
 inline int LeftChildIndex(int index) {
   return (index << 1) + 1;

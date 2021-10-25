@@ -24,9 +24,6 @@ public:
 #include <iostream>
 #include "FastReader.h"
 
-using std::cout;
-using std::endl;
-
 bool FastReader::readIntoCache() {
   auto copied = mReader.read(mCache.data());
   if (copied < 0) {
@@ -58,7 +55,6 @@ size_t FastReader::readFromCache(uint8_t* buffer, size_t bufferSize) {
 }
 
 ssize_t FastReader::read(uint8_t* buffer, size_t bufferSize) {
-
   if (!buffer) {
     return -1;
   }
@@ -98,6 +94,6 @@ ssize_t FastReader::read(uint8_t* buffer, size_t bufferSize) {
     }
   }
 
-  cout << "FastReader::read(" << bufferSize << ") : " << toCopy << endl;
+  std::cout << "FastReader::read(" << bufferSize << ") : " << toCopy << std::endl;
   return toCopy;
 }
