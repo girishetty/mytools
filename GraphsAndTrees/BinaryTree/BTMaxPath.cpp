@@ -29,6 +29,9 @@ static int findMaxPathSum(const TreeNode* node, int& sum) {
 
   // Maximum path for this node - includes both the child path
   int maxPathSumFromNode = std::max(maxNode, lSum + rSum + node->val);
+  
+  // Now we can update the masximum path sum so far
+  sum = std::max(sum, maxPathSumFromNode);
 
   return maxNode;
 }
